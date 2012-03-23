@@ -1,0 +1,21 @@
+#!/bin/sh
+# backup Archer files to Centurion
+
+back="$HOME/Centurion/Archer"
+dirs=("$HOME/.config" "$HOME/Scripts" "$HOME/Build/dwm" "$HOME/Build/vimprobable2-git")
+
+if [[ -d "$back" ]]; then
+    printf "%s\n" "Already mounted..."
+else
+    sudo mount.nfs 192.168.1.100:/home/jason $HOME/Centurion
+fi
+
+printf "%s\n" "Beginning sync..."
+
+rsync -Cazs --stats "${dirs[@]}" "${back}" 
+
+sudo umount $HOME/Centurion
+
+printf "\n%s\n" "Unmounted..."
+
+exit 0

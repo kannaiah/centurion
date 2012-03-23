@@ -1,0 +1,11 @@
+#!/bin/bash
+# script to push IRC highlight notifications
+
+dir="$HOME/Dropbox/Centurion/irssi/"
+
+while inotifywait -qqre attrib "$dir" >/dev/null 2>&1; do
+  #  echo "IRC:" "You have been pinged..." | dzen2 -p 5 
+   notify-send IRC "You have been pinged…" \
+       -i /usr/share/icons/gnome/48x48/status/dialog-warning.png
+done
+

@@ -1,0 +1,13 @@
+#!/bin/sh
+          
+for agent in /tmp/ssh-*/agent.*; do
+    export SSH_AUTH_SOCK=$agent
+                 
+    if ssh-add -l 2>&1 >/dev/null; then
+        echo "Found working SSH Agent..."
+        ssh-add -l
+    else
+        echo "Cannot find ssh agent"
+    fi
+done
+

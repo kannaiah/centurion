@@ -1,0 +1,29 @@
+#!/bin/sh
+# Backup to remote server over NFS
+
+if [ $(id -u) -ne 0 ]; then
+    printf '%s\n' "You must run this as root. Terminating."
+    exit 1
+fi
+
+if [ -d /media/Sentinel/Backups ]; then 
+    printf '%s\n' "Sentinel mounted…"
+else
+    printf '%s\n' "Mounting Sentinel"
+    mount.nfs 192.168.1.200:/home/jason/Backups /media/Sentinel || exit 1
+fi
+
+# sync directories
+printf '%s\n' "Starting sync…"
+
+rsync -azP --delete --exclude-from=Scripts/excludes.txt \
+    --log-file=Documents/rsync-$(date +%d%m%y).log \
+    /home/jason /etc /var/cache/pacman /media/Sentinel/Archer
+    
+if [ "$?" -eq 0 ]; then
+    printf '%s\n' "Synched successfully; now unmounting."
+    umount /media/Sentinel
+else
+    printf '%s\n' "Something has gone wrong!"
+fi
+

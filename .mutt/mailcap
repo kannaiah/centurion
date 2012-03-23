@@ -1,0 +1,6 @@
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/*; feh %s
+video/*; mplayer %s
+audio/*; mplayer %s
+text/*; vim %s
+application/pdf; evince %s

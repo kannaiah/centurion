@@ -1,0 +1,19 @@
+#######################
+# jwr specific options
+#######################
+
+color status     brightwhite  black
+color indicator  brightwhite  black
+color index      brightblue   default    "~f nobody@archlinux.org"
+color index      green        default    "~f webmaster@archlinux.org"
+
+set from      = "mail@jasonwryan.com"
+set sendmail  = "/usr/bin/msmtp -a JWR"
+set mbox      = "+JWR/archive"
+set record    = "+JWR/INBOX.Sent"
+set postponed = "+JWR/INBOX.Drafts"
+
+macro index E "<change-folder>+JWR/archive<enter><limit>~B "       "search everything"
+macro index D "<save-message>+JWR/INBOX.Trash<enter>"              "move message to the trash"
+macro index S "<save-message>+JWR/INBOX.Junk<enter>"               "mark message as spam"
+macro index \Cf "<save-message>+JWR/INBOX.Arch<enter>"             "move message to Arch folder"

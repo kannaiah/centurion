@@ -1,0 +1,23 @@
+#!/bin/sh
+# Backup to remote server over SSH
+# add user to sudoers on target for --rsync-path switch
+
+run_warning(){
+    DISPLAY=:0.0 /usr/bin/notify-send -t 4000 Backup "Backup to Sentinel is beginning…" \
+        -i /usr/share/icons/elementary/status/48/gtk-connect.svg
+}
+
+run_complete(){
+    DISPLAY=:0.0 /usr/bin/notify-send -t 4000 Backup "Backup to Sentinel has completed." \
+        -i /usr/share/icons/elementary/status/48/info.svg
+}
+
+run_warning
+
+rsync -azP --delete --timeout=999 \
+    --exclude-from=/home/jason/Scripts/excludes.txt \
+    --log-file=/home/jason/.logs/rsync/$(date +%d%m%y).log \
+    -e ssh --rsync-path="sudo rsync" /home/jason /etc backups:Backups/Centurion
+
+run_complete
+

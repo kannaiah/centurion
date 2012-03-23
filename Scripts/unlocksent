@@ -1,0 +1,13 @@
+#!/bin/bash
+# Unlock encrypted partitions at boot
+
+stty -echo
+read -p "Enter password for the volume: " password
+stty echo
+
+printf "\n%s\n" "Connecting…"
+
+ssh -p 22 -o UserKnownHostsFile=~/.ssh/known_hosts.boot \
+    -i .ssh/id_rsa.dropbear root@192.168.8.200 \
+    "echo -ne \""$password"\" >/lib/cryptsetup/passfifo"
+

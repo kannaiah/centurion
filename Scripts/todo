@@ -1,0 +1,27 @@
+#!/bin/bash
+# email reminder notes using at(1)...
+
+print() {
+    awk -F"|" '/gmail/ {print $1}' <(at -c "$@")
+}
+
+list() {
+    atq
+}
+
+if [[ "$1" = -p ]]; then
+    print "$2" && exit 0
+else 
+    if [[ "$1" == -l ]]; then
+    list && exit 0
+    fi
+fi
+
+read -p "Time of message? [HH:MM] " time
+read -p "Date of message? [dd.mm.yy] " date
+read -p "Message body? " message
+
+at "$time" "$date" << EOF
+echo "$message" | mailx -s "REMINDER" jasonwryan@gmail.com
+EOF
+

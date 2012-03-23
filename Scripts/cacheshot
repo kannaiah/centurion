@@ -1,0 +1,6 @@
+#!/bin/sh
+
+rsync -azP --exclude-from=/home/jason/Scripts/excludes.txt \
+    --log-file=/home/jason/.logs/rsync/cache-$(date +%d%m%y).log \
+    -e ssh --rsync-path="sudo rsync" /var/cache/pacman backups:Backups/Centurion
+    

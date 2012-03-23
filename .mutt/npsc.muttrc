@@ -1,0 +1,17 @@
+########################
+# npsc specific options
+########################
+
+color status    brightwhite  magenta
+color indicator brightwhite  magenta
+
+set from      = "blog@psnetwork.org.nz"
+set sendmail  = "/usr/bin/msmtp -a NPSC"
+set mbox      = "+NPSC/archive"
+set record    = "+NPSC/INBOX.Sent"
+set postponed = "+NPSC/INBOX.Drafts"
+
+macro index E "<change-folder>+NPSC/archive<enter><limit>~B "       "search everything"
+macro index D "<save-message>+NPSC/INBOX.Trash<enter>"              "move message to the trash"
+macro index S "<save-message>+NPSC/INBOX.Junk<enter>"               "mark message as spam"
+

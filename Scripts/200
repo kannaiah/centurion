@@ -1,0 +1,11 @@
+#!/bin/sh
+# Connect to desktop
+
+lan="$(ip addr | grep .102)"
+
+if [ -n "$lan" ]; then 
+    ssh 200 -t tmux a -d 2>/dev/null
+else 
+    ssh sent -t tmux a -d 2>/dev/null
+fi  
+

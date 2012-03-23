@@ -1,0 +1,12 @@
+#!/bin/bash
+# unmount USB drives
+
+target=$(awk '/media\/[\^A-Z]/ {print $3}' <(mount))
+
+if [[ -n "$target" ]]; then
+    sudo umount "$target" &&
+    printf "%s\n" "${target##*/} unmounted…"
+else
+    printf "%s\n" "No drive mounted…"
+fi
+
