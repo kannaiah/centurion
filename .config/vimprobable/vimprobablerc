@@ -1,0 +1,18 @@
+:------------------------------------------------
+: file: ~/.config/vimprobable/vimprobablerc
+: author: jason ryan http://jasonwryan.com
+: vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=config
+:------------------------------------------------
+
+set homepage=https://bbs.archlinux.org/
+set scrollbars=false
+set fontsize=13
+set monofontsize=10
+set monofont="Droid Sans Mono Slashed"
+set useragent="Vimprobable2 (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)"
+
+: key mappings
+map <C-c>=:set caret=true
+map <M1-c>=:set caret=false
+map <C-s> stop
+map <C-u>=:set useragent="Mozilla/5.0 (X11; Linux i686; rv:6.0) Gecko/20100101 Firefox/6.0"
