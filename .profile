@@ -14,6 +14,7 @@ export https_proxy="http://127.0.0.1:8118"
 
 # export other directories to PATH
 PATH=$PATH:/home/jason/Scripts:/usr/lib/surfraw/
+export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 
 # startx if on tty1 and tmux on tty2
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then

@@ -128,10 +128,10 @@ Key keys[] = {
 
         /* custom commands */
     { 0,                    GDK_g,          GDK_b,          input,      {.s = ":tabopen http://bitbucket.jasonwryan.com" } },
-    { 0,                    GDK_g,          GDK_d,          input,      {.s = ":tabopen http://delicious.com/jasonwryan" } },
     { 0,                    GDK_g,          GDK_e,          input,      {.s = ":tabopen https://wiki.archlinux.org/index.php/Forum_Etiquette" } },
     { 0,                    GDK_g,          GDK_f,          input,      {.s = ":tabopen http://flickr.jasonwryan.com" } },
     { 0,                    GDK_g,          GDK_j,          input,      {.s = ":tabopen http://jasonwryan.com" } },
+    { 0,                    GDK_g,          GDK_p,          input,      {.s = ":tabopen http://127.0.0.1:4000" } },
     { 0,                    GDK_g,          GDK_s,          input,      {.s = ":tabopen http://unix.stackexchange.com" } },
 
     { 0,                    0,              GDK_d,          quit,       {0} },

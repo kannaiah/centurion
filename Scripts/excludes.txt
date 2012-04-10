@@ -15,6 +15,7 @@
 .macromedia
 .Skype
 .thumbnails
+Arrested
 Documents/Vault
 Dropbox
 /etc/at*

@@ -31,6 +31,8 @@ set spelllang=en_gb     " real English spelling
 let g:is_posix=1        " POSIX shell scripts
 set wildmode=list:longest,full
 let g:loaded_matchparen=1
+let g:is_bash=1
+let g:vimsyn_noerror=1
 
 " tabs and indenting
 set tabstop=4           " tabs appear as n number of columns

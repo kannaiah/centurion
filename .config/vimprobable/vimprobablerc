@@ -10,6 +10,8 @@ set fontsize=13
 set monofontsize=10
 set monofont="Droid Sans Mono Slashed"
 set useragent="Vimprobable2 (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)"
+set strictssl=true
+set cabundle=/etc/ssl/certs/ca-certificates.crt
 
 : key mappings
 map <C-c>=:set caret=true

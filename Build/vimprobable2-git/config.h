@@ -9,7 +9,7 @@
 */
 
 /* Vimprobable version number */
-#define VERSION "0.9.12.0"
+#define VERSION "1.0.0"
 #define INTERNAL_VERSION "Vimprobable2/"VERSION
 
 /* general settings */
@@ -22,10 +22,11 @@ static const gboolean enablePagecache   = FALSE; /* TRUE turns on the page cache
 static gboolean escape_input_on_load    = TRUE; /* TRUE will disable automatic focusing of input fields via Javascript*/
 
 /* appearance */
-char statusbgcolor[MAX_SETTING_SIZE]    = "#333333";            /* background color for status bar */
+char statusbgcolor[MAX_SETTING_SIZE]    = "#222222";            /* background color for status bar */
 char statuscolor[MAX_SETTING_SIZE]      = "#696969";            /* color for status bar */
-char sslbgcolor[MAX_SETTING_SIZE]       = "#333333";            /* background color for status bar with SSL url */
-char sslcolor[MAX_SETTING_SIZE]         = "#959FA7";            /* color for status bar with SSL url */
+char sslbgcolor[MAX_SETTING_SIZE]       = "#222222";            /* background color for status bar with SSL url */
+char sslinvalidbgcolor[MAX_SETTING_SIZE]= "#8A2F58";            /* background color for status bar with unverified SSL url */
+char sslcolor[MAX_SETTING_SIZE]         = "#53A6A6";            /* color for status bar with SSL url */
 
                                         /*  normal,                 warning,                error       */
 static const char *urlboxfont[]         = { "Envy Code R 9",   "Droid Sans Mono Slashed 9",   "Droid Sans Mono Slashed 9"};
@@ -81,6 +82,10 @@ static URIHandler uri_handlers[] = {
 /* user styles */
 #define             USER_STYLESHEET             "%s/vimprobable/style.css", config_base
 
+/* ssl */
+static gboolean strict_ssl              = TRUE; /* FALSE will accept any SSL certificate at face value */
+static char ca_bundle[MAX_SETTING_SIZE] = "/etc/ssl/certs/ca-certificates.crt";
+
 /* proxy */
 static const gboolean use_proxy         = TRUE; /* TRUE if you're going to use a proxy (whose address
                                                   is specified in http_proxy environment variable), false otherwise */
@@ -96,8 +101,7 @@ gboolean complete_case_sensitive        = TRUE;
 
 /* search engines */
 static Searchengine searchengines[] = {
-    { "d",         "http://duckduckgo.com/?q=%s" },
-    { "dd",        "https://duckduckgo.com/html/?q=%s&t=Vimprobable" },
+    { "d",         "https://duckduckgo.com/html/?q=%s&t=Vimprobable" },
     { "g",         "http://www.google.com/search?hl=en&source=hp&ie=ISO-8859-l&q=%s" },
     { "a",         "https://wiki.archlinux.org/index.php?title=Special%%3ASearch&search=%s&go=Go" },
     { "w",         "https://secure.wikimedia.org/wikipedia/en/w/index.php?title=Special%%3ASearch&search=%s&go=Go" },
@@ -204,4 +208,6 @@ static Setting browsersettings[] = {
     { "inputbox",        NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "completioncase",  NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "escapeinput",     NULL,               "",                           FALSE,          TRUE,            FALSE,          FALSE  },
+    { "strictssl",       NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
+    { "cabundle",        ca_bundle,          "",                            FALSE,          FALSE,           FALSE,          FALSE  },
 };

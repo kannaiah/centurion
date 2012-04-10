@@ -35,7 +35,7 @@ HISTSIZE="3000"
 HISTFILESIZE=
 
 # share history across all terminals
-PROMPT_COMMAND='history -a'
+PROMPT_COMMAND="history -a"
 
 # Bash completion
 set show-all-if-ambiguous on
@@ -74,6 +74,7 @@ alias sraw="sr archwiki"
 alias exit="clear; exit"
 alias wifi="wicd-curses"
 alias cdp="mplayer cdda://"
+alias blog="cd ~/VCS/octopress"
 alias tmux="tmux -f ~/.tmux/conf"
 alias 200="ssh 200 -t tmux a -d"
 alias sent="ssh -t cent ssh -t 200"
@@ -157,8 +158,11 @@ cpf() { cp "$@" && goto "$_"; }
 mvf() { mv "$@" && goto "$_"; }
 goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 
+# edit posts in Octopress
+pedit() { find source/_posts/ -name "*$1*" -exec $EDITOR {} \; ;}
+
 # External IP
-wmip(){ printf "External IP: %s\n" $(curl -s  http://whatismyip.org/) ;}
+wmip(){ printf "External IP: %s\n" $(curl -s  http://ifconfig.me/) ;}
 
 # Health of RAID array
 raid() { awk '/^md/ {printf "%s: ", $1}; /blocks/ {print $NF}' </proc/mdstat ;}
