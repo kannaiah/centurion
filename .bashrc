@@ -84,6 +84,7 @@ alias fire="sudo ufw status verbose"
 alias pong="ping -c 3 www.google.com"
 alias sync="~/.dropbox-dist/dropboxd &"
 alias socks="ssh -D 8080 -f -C -q -N 200"
+alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
 alias config="(cd $HOME/Build/dwm/ && vim config.h)"
 alias compile="(cd $HOME/Build/dwm && vim config.h && makepkg -efi)"
@@ -153,6 +154,9 @@ extract() {
   fi
 }
 
+# list aur updates
+aurup() { awk '{print $2}' </tmp/aurupdates ;}
+
 # Follow copied and moved files to destination directory
 cpf() { cp "$@" && goto "$_"; }
 mvf() { mv "$@" && goto "$_"; }
@@ -171,7 +175,7 @@ raid() { awk '/^md/ {printf "%s: ", $1}; /blocks/ {print $NF}' </proc/mdstat ;}
 keys() { eval $(ssh-agent) && ssh-add ~/.ssh/{bb,id_*sa} ;}
 
 # surfraw
-surf() { awk '/surf/ {print $3}' <$HOME/Dropbox/Documents/notes/misc.txt | xsel -b ;}
+surf() { awk '/surf/ {printf "%s", $3}' <$HOME/Dropbox/Documents/notes/misc.txt | xsel -b ;}
 
 # attach tmux to existing session
 mux() { [[ -z "$TMUX" ]] && { tmux attach -d || tmux -f $HOME/.tmux/conf new -s secured ;} }

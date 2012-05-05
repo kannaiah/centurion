@@ -1,0 +1,16 @@
+hold=1
+wrap=104
+colourme=blue
+colourdm=red
+colourreply=green
+coloursearch=yellow
+colourwarn=magenta
+vcheck=1
+verify=1
+ansi=1
+readline=
+dostream=1
+ssl=1
+track='jasonwryan'
+exts=/home/jason/Scripts/deshortify.pl
+

@@ -15,6 +15,7 @@ else
     colorscheme miromiro 
 endif
 
+set cursorline          " track position
 set nocompatible        " leave the old ways behind...
 set nowrap              " don't wrap lines
 set nobackup            " disable backup files (filename~)

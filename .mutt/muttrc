@@ -91,7 +91,7 @@ hdr_order from: to: cc: date: subject:                           # and in this o
 
 # boxes
 mailboxes +JWR/INBOX +JWR/Archive +JWR/Sent +JWR/Drafts +JWR/Trash
-mailboxes +GMail/INBOX +GMail/Sent +GMail/Drafts +GMail/NZOSS 
+mailboxes +GMail/INBOX +GMail/Sent +GMail/Drafts +GMail/Trash
 mailboxes +Miromiro/INBOX Miromiro/Sent +Miromiro/Drafts +Miromiro/Trash
 mailboxes +Fastmail/INBOX +Fastmail/Sent +Fastmail/Drafts +Fastmail/Trash
 
@@ -113,9 +113,6 @@ subscribe arch-announce@archlinux.org
 
 lists arch-general@archlinux.org                                 # Arch general list
 subscribe arch-general@archlinux.org
-
-lists arch-releng@archlinnux.org                                 # Arch releases
-subscribe arch-releng@archlinux.org
 
 lists dev@suckless.org                                           # suckless.org
 subscribe dev@suckless.org
@@ -168,11 +165,11 @@ macro compose Y pfy  "send mail without pgp"
 macro pager   \Cu   <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 
 # Address book ----------------------------------------------------------------------------------------
-set query_command= "abook --mutt-query '%s'"
+set query_command= "abook --datafile $HOME/Dropbox/Documents/abook/addressbook --mutt-query '%s'"
 # sync abook and alias
 macro index A      "!~/Scripts/abook-autoexport\n:source ~/.mutt/alias\n"          "Start abook"
 macro index \Ca    "|~/Scripts/abook-autoexport --add-email-quiet\n:source ~/.mutt/alias\n" "Create new alias from the actual message"
 
 # quick-sync ~/Mail immediately with offlineimap
-macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o<enter>" "sync IMAP"
+macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o -u ttyui<enter>" "sync IMAP"
 
