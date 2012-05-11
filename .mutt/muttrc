@@ -143,6 +143,7 @@ bind index W            clear-flag
 bind index w            set-flag
 bind index,pager R      group-reply
 bind compose p          pgp-menu
+bind attach <return>    view-mailcap
 
 # macros
 macro index gj       "<change-folder> =JWR/INBOX<enter>"       "go to Inbox"
