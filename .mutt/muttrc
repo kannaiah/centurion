@@ -147,6 +147,7 @@ bind attach <return>    view-mailcap
 
 # macros
 macro index gj       "<change-folder> =JWR/INBOX<enter>"       "go to Inbox"
+macro index gh       "<change-folder> =JWR/INBOX<enter>"       "go to Inbox"
 macro index gl       "<change-folder> =GMail/INBOX<enter>"     "go to Gmail inbox"
 macro index gm       "<change-folder> =Miromiro/INBOX<enter>"  "go to Miromiro inbox"
 macro index gf       "<change-folder> =Fastmail/INBOX<enter>"  "go to Fastmail inbox"
@@ -174,3 +175,13 @@ macro index \Ca    "|~/Scripts/abook-autoexport --add-email-quiet\n:source ~/.mu
 # quick-sync ~/Mail immediately with offlineimap
 macro index Z   "<shell-escape>/usr/bin/offlineimap -q -o -u ttyui<enter>" "sync IMAP"
 
+# search with notmuch ---------------------------------------------------------------------------------
+macro index <F8> \
+      "<enter-command>unset wait_key<enter><shell-escape>notmuch-mutt --prompt search<enter><change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>" \
+      "notmuch: search mail"
+macro index <F9> \
+      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter><enter-command>set wait_key<enter>" \
+      "notmuch: reconstruct thread"
+macro index <F6> \
+      "<enter-command>unset wait_key<enter><pipe-message>notmuch-mutt tag -inbox<enter>" \
+      "notmuch: remove message from inbox"

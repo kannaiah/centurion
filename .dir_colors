@@ -173,6 +173,7 @@ ORPHAN         01;30
 .nfo           00;33
 .notify-osd    00;36
 .netrc         01;31
+.notmuch-config 00;33
 .nvidia-settings-rc 00;36
 .offlineimaprc 00;33
 .pacnew        00;33

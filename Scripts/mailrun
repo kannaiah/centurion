@@ -6,4 +6,6 @@ PID=$(pgrep offlineimap)
 
 offlineimap -o -u quiet &>/dev/null &
 
+notmuch new
+
 exit 

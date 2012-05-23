@@ -1,0 +1,46 @@
+# Maintainer: jason ryan <jasonwryan@gmail.com>
+# Contributor: fauno <fauno at kiwwwi.com.ar>
+# Modified to build notmuch-mutt
+
+pkgname=notmuch
+pkgver=0.13
+pkgrel=2
+pkgdesc="Notmuch is not much of an email program"
+arch=(i686 x86_64 mips64el)
+url="http://notmuchmail.org/"
+license=('GPL3')
+depends=('xapian-core' 'gmime' 'talloc' 'perl-mailtools' 'perl-mail-box'\
+    'perl-string-shellquote' 'perl-term-readline-gnu')
+makedepends=('gnupg' 'pkgconfig')
+options=(!distcc !makeflags)
+
+source=("http://notmuchmail.org/releases/${pkgname}-${pkgver}.tar.gz")
+md5sums=('d5a70ed3ba84a2670b4576cfe16bd4f6')
+
+build() {
+  cd "${srcdir}/${pkgname}-"*
+
+  ./configure --prefix=/usr --sysconfdir=/etc
+  make 
+
+}
+
+check() {
+  cd "${srcdir}/${pkgname}-"*
+  make test
+}
+
+package(){
+  cd "${srcdir}/${pkgname}-"*
+  make DESTDIR="${pkgdir}/" LIBDIR_IN_LDCONFIG=0 install
+
+  install -D ${pkgname} ${pkgdir}/usr/sbin/${pkgname}
+  install -D contrib/${pkgname}-mutt/${pkgname}-mutt ${pkgdir}/usr/bin/
+
+  mkdir -p ${pkgdir}/usr/share/vim/vimfiles/{plugin,syntax}
+
+  cd vim && make PREFIX="${pkgdir}/usr/share/vim/vimfiles" install
+
+# Remove conflicting zsh completion
+  rm -r ${pkgdir}/usr/share/zsh
+}
