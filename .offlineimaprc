@@ -1,0 +1,80 @@
+[general]
+# NOTE: cronjob calls the quiet UI with -u
+ui = TTY.TTYUI
+accounts = JWR,GMail,Miromiro,Fastmail
+
+### jasonwryan.com ###
+[Account JWR]
+localrepository = JWR-Local
+remoterepository = JWR-Remote
+
+[Repository JWR-Local]
+type = Maildir
+localfolders = ~/Mail/JWR
+
+[Repository JWR-Remote]
+type = IMAP 
+remotehost = mail.jasonwryan.com
+remoteport = 143
+remoteuser = mail@jasonwryan.com
+
+### GMail ###
+[Account GMail]
+localrepository = GMail-Local
+remoterepository = GMail-Remote
+
+[Repository GMail-Local]
+type = Maildir
+localfolders = ~/Mail/GMail
+nametrans = lambda folder: re.sub('spam', '[GMail].Spam',
+                           re.sub('drafts', '[GMail].Drafts',
+                           re.sub('sent', '[GMail].Sent Mail',
+                           re.sub('flagged', '[GMail].Starred',
+                           re.sub('trash', '[GMail].Trash',
+                           re.sub('important', '[GMail].Important',
+                           re.sub('archive', '[GMail].All Mail', folder)))))))
+[Repository GMail-Remote]
+type = Gmail 
+remoteport = 993
+remoteuser = jasonwryan@gmail.com
+realdelete = yes
+nametrans = lambda folder: re.sub('.*Spam$', 'spam', 
+                           re.sub('.*Drafts$', 'drafts', 
+                           re.sub('.*Sent Mail$', 'sent', 
+                           re.sub('.*Starred$', 'flagged', 
+                           re.sub('.*Trash$', 'trash', 
+                           re.sub('.*Important$', 'important', 
+                           re.sub('.*All Mail$', 'archive', folder)))))))
+
+### Miromiro ###
+[Account Miromiro]
+localrepository = Miromiro-Local
+remoterepository = Miromiro-Remote
+
+[Repository Miromiro-Local]
+type = Maildir
+localfolders = ~/Mail/Miromiro
+
+[Repository Miromiro-Remote]
+type = IMAP 
+remotehost = imap.miromiro.com
+remoteport = 143
+remoteuser = jwryan
+
+### Fastmail ###
+[Account Fastmail]
+localrepository = Fastmail-Local
+remoterepository = Fastmail-Remote
+
+[Repository Fastmail-Local]
+type = Maildir
+localfolders = ~/Mail/Fastmail
+
+[Repository Fastmail-Remote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteport = 143
+remoteuser = jasonryan@fastmail.fm
+
+# vim: ft=cfg tw=0
+
