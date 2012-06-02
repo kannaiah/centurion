@@ -174,8 +174,11 @@ raid() { awk '/^md/ {printf "%s: ", $1}; /blocks/ {print $NF}' </proc/mdstat ;}
 # SSH Keys 
 keys() { eval $(ssh-agent) && ssh-add ~/.ssh/{bb,id_*sa} ;}
 
-# surfraw
+# surfraw ML
 surf() { awk '/surf/ {printf "%s", $3}' <$HOME/Dropbox/Documents/notes/misc.txt | xsel -b ;}
+
+# surfraw git
+srgit() { git "$1" ssh://jasonwryan-guest@git.debian.org/git/surfraw/surfraw ; }
 
 # attach tmux to existing session
 mux() { [[ -z "$TMUX" ]] && { tmux attach -d || tmux -f $HOME/.tmux/conf new -s secured ;} }

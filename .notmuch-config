@@ -47,7 +47,8 @@ other_email=jason@miromiro.com;jasonwryan@gmail.com;jasonryan@fastmail.fm;
 #		be ignored, independent of its depth/location in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=new;
+#tags=unread;inbox;
 ignore=
 
 # Search configuration

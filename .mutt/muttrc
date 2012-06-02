@@ -74,7 +74,8 @@ set fast_reply                                                   # skip to compo
 set sendmail_wait       = -1                                     # don't wait for sending... to complete
 set askcc                                                        # ask for CC:
 set fcc_attach                                                   # save attachments with the body
-unset mime_forward                                               # forward attachments as part of body
+set mime_forward                                                 # forward attachments as part of body
+set mime_forward_rest                                            # include attachments
 set forward_format      = "Fwd: %s"                              # format for subject when forwarding
 set forward_decode                                               # decode when forwarding
 set attribution         = "On %d, %n wrote:"                     # set the attribution
@@ -182,6 +183,6 @@ macro index <F8> \
 macro index <F9> \
     "<enter-command>unset wait_key<enter><enter-command>unignore message-id<enter><pipe-message>notmuch-mutt thread<enter><change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter><enter-command>set wait_key<enter>" \
     "search and reconstruct owning thread with notmuch"
-macro index,pager <F6> \
+macro index <F6> \
     "<enter-command>unset wait_key<enter><enter-command>unignore message-id<enter><pipe-message>notmuch-mutt -- tag +deleted<enter>" \
     "tag messages as deleted with notmuch"

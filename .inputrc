@@ -1,5 +1,8 @@
 $include /etc/inputrc
 
+# TAB completion
+set show-all-if-ambiguous on
+
 # for vi mode
 set editing-mode vi
 $if mode=vi
