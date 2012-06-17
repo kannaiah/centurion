@@ -92,7 +92,7 @@ hdr_order from: to: cc: date: subject:                           # and in this o
 
 # boxes
 mailboxes +JWR/INBOX +JWR/Archive +JWR/Sent +JWR/Drafts +JWR/Trash
-mailboxes +GMail/INBOX +GMail/Sent +GMail/Drafts +GMail/Trash
+mailboxes +GMail/INBOX +GMail/sent +GMail/drafts +GMail/trash
 mailboxes +Miromiro/INBOX Miromiro/Sent +Miromiro/Drafts +Miromiro/Trash
 mailboxes +Fastmail/INBOX +Fastmail/Sent +Fastmail/Drafts +Fastmail/Trash
 

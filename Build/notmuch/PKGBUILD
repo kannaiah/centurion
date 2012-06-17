@@ -3,8 +3,8 @@
 # Modified to build notmuch-mutt
 
 pkgname=notmuch
-pkgver=0.13
-pkgrel=2
+pkgver=0.13.2
+pkgrel=1
 pkgdesc="Notmuch is not much of an email program"
 arch=(i686 x86_64 mips64el)
 url="http://notmuchmail.org/"
@@ -13,9 +13,9 @@ depends=('xapian-core' 'gmime' 'talloc' 'perl-mailtools' 'perl-mail-box'\
     'perl-string-shellquote' 'perl-term-readline-gnu')
 makedepends=('gnupg' 'pkgconfig')
 options=(!distcc !makeflags)
+md5sums=('13be4cf1ab2be49b42fec87c3cb44a5a')
 
 source=("http://notmuchmail.org/releases/${pkgname}-${pkgver}.tar.gz")
-md5sums=('d5a70ed3ba84a2670b4576cfe16bd4f6')
 
 build() {
   cd "${srcdir}/${pkgname}-"*

@@ -8,8 +8,8 @@ color indicator  brightwhite   blue
 set from      = "jasonwryan@gmail.com"
 set sendmail  = "/usr/bin/msmtp -a GMail"
 set mbox      = "+GMail/archive"
-set record    = "+GMail/INBOX.Sent"
-set postponed = "+GMail/INBOX.Drafts"
+set record    = "+GMail/sent"
+set postponed = "+GMail/drafts"
 
 macro index E "<change-folder>+GMail/archive<enter><limit>~B "   "search everything"
 macro index D "<save-message>+GMail/trash<enter>"                "move message to the trash"

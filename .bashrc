@@ -106,6 +106,9 @@ alias pacup="sudo pacman-color -Syu"
 # Clean cache
 alias clean="sudo pacman -Sc"
 
+# List updates
+alias lspkg="pacman -Qqu --dbpath /tmp/checkup-db-jason/"
+
 # Remove orphans
 alias orphans="pacman -Qtdq > ~/orphans.txt && less orphans.txt"
 
