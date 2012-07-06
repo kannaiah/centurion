@@ -25,8 +25,13 @@ shopt -s nocaseglob         # pathname expansion will be treated as case-insensi
 [ -z "$PS1" ] && return
 
 set_prompt_style () {
-  PS1="┌─[\[\e[34m\]\h\[\e[0m\] \[\e[32m\]\w\[\e[0m\]]\n└─╼ "
+    if [ -n "$SSH_CLIENT" ]; then
+        PS1="┌─[\[\e[0;34m\]\h\[\e[0m\] \[\e[1;33m\]\w: SSH$\[\e[0m\]]\n└─╼ "
+    else
+        PS1="┌─[\[\e[34m\]\h\[\e[0m\] \[\e[32m\]\w\[\e[0m\]]\n└─╼ "
+    fi
 }
+
 set_prompt_style
 
 # set history variables 
@@ -69,7 +74,7 @@ alias lr="ls -lR"           # recursive ls
 alias lsr="tree -Csu"       # nice alternative to 'recursive ls'
 
 # General ------------------
-alias vi="vim"
+alias less="less -FX"
 alias sraw="sr archwiki"
 alias exit="clear; exit"
 alias wifi="wicd-curses"
@@ -157,6 +162,9 @@ extract() {
   fi
 }
 
+# paste to sprunge
+sprung() { curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
+
 # list aur updates
 aurup() { awk '{print $2}' </tmp/aurupdates ;}
 
@@ -235,3 +243,4 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFc0c0c0" #white
     clear # bring us back to default input colours
 fi
+

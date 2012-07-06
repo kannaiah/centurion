@@ -5,6 +5,7 @@
 **/*Trash*/
 **/*trash*/
 .adobe
+.config/chromium
 .dbus
 .dropbox
 .gimp*
