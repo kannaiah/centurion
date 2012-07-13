@@ -174,7 +174,7 @@ mvf() { mv "$@" && goto "$_"; }
 goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 
 # edit posts in Octopress
-pedit() { find source/_posts/ -name "*$1*" -exec $EDITOR {} \; ;}
+pedit() { find source/_posts/ -name "*$1*" -exec vim {} \; ;}
 
 # External IP
 wmip(){ printf "External IP: %s\n" $(curl -s  http://ifconfig.me/) ;}

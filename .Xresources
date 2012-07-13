@@ -64,7 +64,7 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.urlLauncher: /home/jason/Scripts/vimprobtab.sh
 URxvt.matcher.button: 1
-URxvt.matcher.rend.0: fg16 RS_Uline
+URxvt.matcher.rend.0: -Uline fg16
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
