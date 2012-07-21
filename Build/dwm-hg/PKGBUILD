@@ -23,7 +23,10 @@ build() {
   cd "$srcdir/$_hgrepo-build"
 	
   # apply patchset
-  hg qpush -a
+  if [ -d "$srcdir/$_hgrepo/.hg/patches" ]; then
+      msg "Pushing queued patchset"
+      hg qpush -a
+  fi
 
   # customize Makefile
   sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
