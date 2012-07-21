@@ -4,7 +4,7 @@ case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
 # setup environment
 export LC_ALL=
 export LC_COLLATE="C"
-export EDITOR="urxvt -e vim"
+export EDITOR="vim"
 export VISUAL=$EDITOR
 export FCEDIT="vim"
 export BROWSER="/usr/bin/vimprobable2"

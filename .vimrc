@@ -29,6 +29,7 @@ set ww=b,s,h,l,<,>,[,]  " whichwrap -- left/right keys can traverse up/down
 set linebreak           " attempt to wrap lines cleanly
 set wildmenu            " enhanced tab-completion shows all matching cmds in a popup menu
 set spelllang=en_gb     " real English spelling
+set dictionary+=/usr/share/dict/words
 let g:is_posix=1        " POSIX shell scripts
 set wildmode=list:longest,full
 let g:loaded_matchparen=1
