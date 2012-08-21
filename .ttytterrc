@@ -12,5 +12,5 @@ readline=
 dostream=1
 ssl=1
 track='jasonwryan'
-exts=/home/jason/Scripts/deshortify.pl
+#exts=/home/jason/Scripts/deshortify.pl
 

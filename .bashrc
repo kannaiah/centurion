@@ -91,10 +91,8 @@ alias sync="~/.dropbox-dist/dropboxd &"
 alias socks="ssh -D 8080 -f -C -q -N 200"
 alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
-alias config="(cd $HOME/Build/dwm/ && vim config.h)"
-alias compile="(cd $HOME/Build/dwm && vim config.h && makepkg -efi)"
-alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
+alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 
 # Power
 alias reboot="sudo shutdown -r now"
@@ -161,6 +159,9 @@ extract() {
       echo "\`$1' is not a valid file"
   fi
 }
+
+# Motherboard temp
+temp() { awk '/^MB/ { sub(/+/, ""); print $3}' <(sensors) ;}
 
 # paste to sprunge
 sprung() { curl -F "sprunge=<-" http://sprunge.us <"$1" ;}

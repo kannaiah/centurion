@@ -13,7 +13,7 @@ music(){
 
 mbt(){
     tmp="$(awk '/^MB/ {print +$3}' <(sensors))"
-    if [[ "$tmp" -lt "45" ]]; then
+    if [[ "$tmp" -lt "55" ]]; then
         echo -e "MB \x07$tmp\x01"
     else
         echo -e "\x03MB $tmp\x01"
@@ -67,7 +67,7 @@ pac(){
 }
 
 ups(){
-    ups="$(awk '$0 !~ /tamsyn/' /tmp/aurupdates | wc -l)"
+    ups="$(awk '$0 !~ /tamsyn/' /tmp/aurupdates* | wc -l)"
     if [ $ups = 0 ]; then
         echo "0"
     else echo -en "\x05$ups\x01"
@@ -75,7 +75,7 @@ ups(){
 }
 
 aur(){
-    aur="$(awk '$0 !~ /^No /' /tmp/aurphans | wc -l)"
+    aur="$(awk '$0 !~ /^No /' /tmp/aurphans* | wc -l)"
     if [ $aur -gt 0 ]; then
         echo -en "\x03*\x01"
     fi

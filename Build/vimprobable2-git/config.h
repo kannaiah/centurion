@@ -9,7 +9,7 @@
 */
 
 /* Vimprobable version number */
-#define VERSION "1.0.3"
+#define VERSION "1.1.0"
 #define INTERNAL_VERSION "Vimprobable2/"VERSION
 
 /* general settings */
@@ -203,6 +203,7 @@ static Setting browsersettings[] = {
     { "defaultsearch",   defaultsearch,      "",                            FALSE,          FALSE,           FALSE,          FALSE  },
     { "qmark",           NULL,               "",                            FALSE,          FALSE,           FALSE,          FALSE  },
     { "proxy",           NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
+    { "windowsize",      NULL,               "",                            FALSE,          FALSE,           FALSE,          FALSE  },
     { "scrollbars",      NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "statusbar",       NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "inputbox",        NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },

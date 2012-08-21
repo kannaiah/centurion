@@ -2,7 +2,8 @@
 # -------------------
 
 # play CDs
-cdrom="/dev/sr0"
+cdrom=/dev/sr0
+dvd-device=/dev/sr0
 cache=5000
 
 # general prefs

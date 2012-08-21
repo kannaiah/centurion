@@ -1,0 +1,23 @@
+#!/bin/bash
+# make extensions lowercase
+# http://stackoverflow.com/questions/11818408/convert-all-file-extensions-to-lower-case
+
+while read f; do
+    if [[ "$f" = *.* ]]; then
+        # Extract the basename
+        b="${f%.*}"
+
+        # Extract the extension
+        x="${f##*.}"
+
+        # Convert the extension to lower case
+        # Note: this only works in recent versions of Bash
+        l="${x,,}"
+
+        if [[ "$x" != "$l" ]]; then
+            mv "$f" "$b.$l"
+        fi
+    else
+        continue
+    fi
+done
