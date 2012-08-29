@@ -11,7 +11,7 @@ set from      = "mail@jasonwryan.com"
 set sendmail  = "/usr/bin/msmtp -a JWR"
 set mbox      = "+JWR/archive"
 set record    = "+JWR/INBOX.Sent"
-set postponed = "+JWR/INBOX.Drafts"
+set postponed = "+JWR/INBOX.Draft"
 
 macro index E "<change-folder>+JWR/archive<enter><limit>~B "       "search everything"
 macro index D "<save-message>+JWR/INBOX.Trash<enter>"              "move message to the trash"

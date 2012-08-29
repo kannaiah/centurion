@@ -13,5 +13,5 @@ set postponed = "+Miromiro/INBOX.Drafts"
 
 macro index E "<change-folder>+Miromiro/archive<enter><limit>~B "       "search everything"
 macro index D "<save-message>+Miromiro/INBOX.Trash<enter>"              "move message to the trash"
-macro index S "<save-message>+Miromiro/INBOX.Junk<enter>"               "mark message as spam"
+macro index S "<save-message>+Miromiro/INBOX.Spam<enter>"               "mark message as spam"
 

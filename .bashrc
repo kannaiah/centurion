@@ -18,6 +18,8 @@ shopt -s histappend         # don't overwrite history
 shopt -s dotglob            # include dotfiles in pathname expansion
 shopt -s expand_aliases     # expand aliases
 shopt -s extglob            # enable extended pattern-matching features
+shopt -s globstar           # recursive globbing…
+shopt -s progcomp           # programmable completion
 shopt -s hostcomplete       # attempt hostname expansion when @ is at the beginning of a word
 shopt -s nocaseglob         # pathname expansion will be treated as case-insensitive
 
@@ -202,16 +204,29 @@ zones() { ls /usr/share/zoneinfo/"$1" ;}
 # Nice mount output
 nmount() { (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2=$4="";1') | column -t; }
 
-# Simple notes
-n() { $EDITOR $HOME/.notes/"$*".txt ; }
-nls() { tree -CR --noreport $HOME/.notes | awk '{ if ((NR > 1) gsub(/.txt/,"")); if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf "  %s\n", $3 }' ;}
-nd() { rm $HOME/.notes/"$*".txt ; }
-
 # Print man pages 
 manp() { man -t "$@" | lpr -pPrinter; }
 
 # Create pdf of man page - requires ghostscript and mimeinfo
 manpdf() { man -t "$@" | ps2pdf - /tmp/manpdf_$1.pdf && xdg-open /tmp/manpdf_$1.pdf ;}
+
+### Simple notes ------------------------------------------------
+n() { 
+local arg files=(); for arg; do files+=( ~/".notes/$arg" ); done;
+    ${EDITOR:-vi} "${files[@]}"; 
+}
+
+nls() {
+    tree -CR --noreport $HOME/.notes | awk '{ if ((NR > 1) gsub(/.txt/,""));
+    if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf "  %s\n", $3 }'
+}
+
+# TAB completion for notes
+_notes() {
+local files=($HOME/.notes/**/"$2"*)
+    [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##~/.notes/}" )
+}
+complete -o default -F _notes n
 
 ##################################
 
