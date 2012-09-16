@@ -3,7 +3,7 @@
 
 cd $HOME/Build && cower -d "$1"
 builddir="$_"
-cd "$builddir" && $EDITOR PKGBUILD
+cd "$builddir" && ${EDITOR:-vi} PKGBUILD
     makepkg -si && cd - &>/dev/null
 
     read -p "Remove Build directory? [Y/n]? " yn

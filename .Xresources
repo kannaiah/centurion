@@ -13,7 +13,7 @@ URxvt.transparent: 0
 URxvt.urgentOnBell: true
 URxvt.letterSpace: -1
 URxvt.lineSpace: 1
-URxvt.internalBorder: 2
+URxvt.internalBorder: 4
 
 ! Font settings
 Xft.autohint: 0
@@ -43,8 +43,8 @@ URxvt.boldFont:xft:dejavu sans mono:size=10.5
 !URxvt.boldFont:xft:luxi mono:regular:size=10
 !URxvt.font:xft:envy code r:medium:size=11
 !URxvt.boldFont:xft:envy code r:medium:size=11
-!URxvt.font:xft:inconsolata:medium:size=12
-!URxvt.boldFont:xft:inconsolata:medium:size=12
+!URxvt.font:xft:inconsolata:medium:size=13
+!URxvt.boldFont:xft:inconsolata:medium:size=13
 
 ! -- Colours -- !
 #include "/home/jason/.colours/dark"

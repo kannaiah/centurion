@@ -1,18 +1,18 @@
-# $Id: PKGBUILD 158094 2012-05-02 20:46:41Z eric $
+# $Id: PKGBUILD 166148 2012-09-04 22:30:41Z eric $
 # Maintainer: Eric Bélanger <eric@archlinux.org>
-# Contributor: Ben Mazer <blm@groknil.org>
+# build without gnome-keyring…
 
 pkgbase=msmtp
 pkgname=('msmtp' 'msmtp-mta')
-pkgver=1.4.28
+pkgver=1.4.29
 pkgrel=1
-groups=('modified')
 arch=('i686' 'x86_64')
+groups=('modified')
 license=('GPL3')
 url="http://msmtp.sourceforge.net"
 makedepends=('gsasl')
 source=(http://download.sourceforge.net/sourceforge/msmtp/${pkgbase}-${pkgver}.tar.bz2)
-sha1sums=('3fd44b30e8f4ae071b2a5a205d6007f3465fa970')
+sha1sums=('6db88d6c5093b3958b0285b5010f2677b05e0348')
 
 build() {
   cd "${srcdir}/${pkgbase}-${pkgver}"

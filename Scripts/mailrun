@@ -1,11 +1,8 @@
 #!/bin/bash
+read -r pid < ~/.offlineimap/pid
 
-PID=$(pgrep offlineimap)
+if ps $pid &>/dev/null; then
+  kill -9 $pid
+fi
 
-[[ -n "$PID" ]] && kill "$PID"
-
-offlineimap -o -u quiet &>/dev/null &
-
-notmuch new
-
-exit 
+offlineimap -o -u quiet 2>/dev/null  &

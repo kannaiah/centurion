@@ -1,10 +1,13 @@
-# Build vim with X support
+# $Id: PKGBUILD 166660 2012-09-15 04:03:40Z tdziedzic $
+# Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
+# Maintainer: tobias [ tobias at archlinux org ]
+# Maintainer: Daniel J Griffiths <ghost1227@archlinux.us>
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
 _topver=7.3
-_patchlevel=600
-__hgrev=11d40fc82f11
+_patchlevel=661
+__hgrev=5884d056e1d1
 _versiondir="vim${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
 pkgrel=1
@@ -16,11 +19,12 @@ makedepends=('gpm' 'python2' 'libxt' 'desktop-file-utils')
 source=(ftp://ftp.archlinux.org/other/vim/${pkgname}-${pkgver}.tar.xz{,.sig}
         pythoncomplete.vim::http://www.vim.org/scripts/download_script.php\?src_id=10872
         vimrc archlinux.vim)
-md5sums=('f84d63ed295bd875e9e02dba318a007d'
-         'ef9c54531a690d843b8dd6191b2e3e41'
+md5sums=('fa1b6f85ff556a383e984f5bfdd578dc'
+         '675f3660d7e5b30d95263421999515e2'
          '6e7adfbd5d26c1d161030ec203a7f243'
          'e57777374891063b9ca48a1fe392ac05'
          '10353a61aadc3f276692d0e17db1478e')
+
 # source PKGBUILD && mksource
 mksource() {
 
@@ -44,14 +48,10 @@ mksource() {
   rm ${pkgname}-${pkgver}/{.hgignore,.hgtags}
   tar -cJf ${pkgname}-${pkgver}.tar.xz ${pkgname}-${pkgver}/*
   rm -r ${pkgname}-${pkgver}
-# gpg --detach-sign --use-agent -u ${GPGKEY} ${pkgname}-${pkgver}.tar.xz
+  #gpg --detach-sign --use-agent -u ${GPGKEY} ${pkgname}-${pkgver}.tar.xz
 }
 
 build() {
-  # remove -O2 because there is a crash with python because of it
-  # fedora br: https://bugzilla.redhat.com/show_bug.cgi?id=817196
-  export CFLAGS="${CFLAGS/-O2 /}"
-  
 cd "${srcdir}"
 
   cp -a ${pkgname}-${pkgver} vim-build
@@ -103,7 +103,7 @@ package_vim() {
   mv "${pkgdir}"/usr/share/vim "${srcdir}"/runtime-install
 
   # license
-  install -Dm644 "${srcdir}"/vim-${pkgver}/runtime/doc/uganda.txt \
+   install -Dm644 "${srcdir}"/vim-${pkgver}/runtime/doc/uganda.txt \
     "${pkgdir}"/usr/share/licenses/${pkgname}/license.txt
 }
 

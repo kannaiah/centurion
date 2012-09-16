@@ -42,7 +42,7 @@ HISTSIZE="3000"
 HISTFILESIZE=
 
 # share history across all terminals
-PROMPT_COMMAND="history -a"
+PROMPT_COMMAND="history -a; history -c; history -r"
 
 # Bash completion
 set show-all-if-ambiguous on
@@ -169,7 +169,7 @@ temp() { awk '/^MB/ { sub(/+/, ""); print $3}' <(sensors) ;}
 sprung() { curl -F "sprunge=<-" http://sprunge.us <"$1" ;}
 
 # list aur updates
-aurup() { awk '{print $2}' </tmp/aurupdates ;}
+aurup() { awk '{print $2}' </tmp/aurupdates* ;}
 
 # Follow copied and moved files to destination directory
 cpf() { cp "$@" && goto "$_"; }
@@ -189,7 +189,7 @@ raid() { awk '/^md/ {printf "%s: ", $1}; /blocks/ {print $NF}' </proc/mdstat ;}
 keys() { eval $(ssh-agent) && ssh-add ~/.ssh/{bb,id_*sa} ;}
 
 # surfraw ML
-surf() { awk '/surf/ {printf "%s", $3}' <$HOME/Dropbox/Documents/notes/misc.txt | xsel -b ;}
+surf() { awk '/surf/ {printf "%s", $3}' <$HOME/Dropbox/Documents/notes/misc | xsel -b ;}
 
 # surfraw git
 srgit() { git "$1" ssh://jasonwryan-guest@git.debian.org/git/surfraw/surfraw ; }
@@ -212,19 +212,25 @@ manpdf() { man -t "$@" | ps2pdf - /tmp/manpdf_$1.pdf && xdg-open /tmp/manpdf_$1.
 
 ### Simple notes ------------------------------------------------
 n() { 
-local arg files=(); for arg; do files+=( ~/".notes/$arg" ); done;
-    ${EDITOR:-vi} "${files[@]}"; 
+  local arg files=()
+  for arg; do 
+      files+=( ~/".notes/$arg" )
+  done
+  ${EDITOR:-vi} "${files[@]}"; 
 }
 
 nls() {
-    tree -CR --noreport $HOME/.notes | awk '{ if ((NR > 1) gsub(/.txt/,""));
-    if (NF==1) print $1; else if (NF==2) print $2; else if (NF==3) printf "  %s\n", $3 }'
+  tree -CR --noreport $HOME/.notes | awk '{ 
+    if (NF==1) print $1 
+    else if (NF==2) print $2
+    else if (NF==3) printf "  %s\n", $3 
+  }'
 }
 
 # TAB completion for notes
 _notes() {
-local files=($HOME/.notes/**/"$2"*)
-    [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##~/.notes/}" )
+  local files=($HOME/.notes/**/"$2"*)
+  [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##~/.notes/}" )
 }
 complete -o default -F _notes n
 
