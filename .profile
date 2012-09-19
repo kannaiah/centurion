@@ -19,7 +19,6 @@ PATH=$PATH:/home/jason/Scripts:/usr/lib/surfraw/
 export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 
 # start keychain
-
 /usr/bin/keychain -Q -q --nogui id_rsa id_dsa alioth bb B1BD4E40
 [ -f $HOME/.keychain/${HOSTNAME}-sh ] && source $HOME/.keychain/${HOSTNAME}-sh
 [ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ] && source $HOME/.keychain/${HOSTNAME}-sh-gpg

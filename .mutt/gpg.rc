@@ -5,6 +5,12 @@
 # This version uses gpg-2comp from 
 #   http://70t.de/download/gpg-2comp.tar.gz
 #
+set pgp_use_gpg_agent = yes 
+set pgp_autosign = yes
+set pgp_sign_as = B1BD4E40
+set pgp_timeout = 1800
+set pgp_replyencrypt = yes
+set pgp_good_sign="^gpgv?: Good signature from "
 set pgp_decode_command="gpg --no-verbose --quiet --batch --output - %f"
 set pgp_verify_command="gpg --no-verbose --quiet --batch --output - --verify %s %f"
 set pgp_decrypt_command="gpg --no-verbose --quiet --batch --output - %f"
@@ -17,13 +23,3 @@ set pgp_export_command="gpg --no-verbose --export --armor %r"
 set pgp_verify_key_command="gpg --verbose --batch --fingerprint --check-sigs %r"
 set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --list-keys %r"
 set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
-set pgp_use_gpg_agent = yes 
-set pgp_autosign = yes
-set pgp_sign_as = B1BD4E40
-set pgp_timeout = 1800
-set pgp_replyencrypt = yes
-
-set pgp_good_sign="^gpgv?: Good signature from "
-
-
-
