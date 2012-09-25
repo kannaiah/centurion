@@ -37,12 +37,12 @@ set_prompt_style () {
 set_prompt_style
 
 # set history variables 
+unset HISTFILESIZE
+HISTSIZE="5000"
 HISTCONTROL=ignoreboth:erasedups
-HISTSIZE="3000"
-HISTFILESIZE=
-
 # share history across all terminals
 PROMPT_COMMAND="history -a; history -c; history -r"
+export HISTSIZE PROMPT_COMMAND
 
 # Bash completion
 set show-all-if-ambiguous on

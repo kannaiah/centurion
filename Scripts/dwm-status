@@ -43,7 +43,6 @@ cpu(){
 
 hdd(){
     hd="$(awk '{i = $5} /boot/ {a = i}; /root/ {b = i}; /home/ {c = i} END {print  a,b,c}' <(df -P))"
-	#hd="$(df -P | sort -r | awk '/^\/dev\/[m|s][a|d]/{s=s (s?" ":"") $5} END {printf "%s", s}')"
 	echo -e "\x08$hd\x01"
 }
 
