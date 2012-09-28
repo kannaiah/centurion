@@ -58,6 +58,7 @@ if has("autocmd")
 	autocmd BufReadPost * if line("'\"")>0 && line("'\"")<=line("$")|exe "normal g`\""|endif
 	autocmd BufRead *.txt set tw=80 " limit width to n cols for txt files
 	autocmd BufRead ~/.mutt/temp/mutt-* set tw=80 ft=mail nocindent spell   " width, mail syntax hilight, spellcheck
+	autocmd BufRead /tmp/vimprobable* set tw=80  nocindent spell
     autocmd FileType tex set tw=80   " wrap at 80 chars for LaTeX files
 endif
 
