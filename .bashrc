@@ -9,6 +9,7 @@ export GPGKEY=B1BD4E40
 
 # bash options ------------------------------------
 set -o vi                   # Vi mode
+set -o noclobber            # don't inadvertently overwrite files
 shopt -s autocd             # change to named directory
 shopt -s cdable_vars        # if cd arg is not valid, assumes its a var defining a dir
 shopt -s cdspell            # autocorrects cd misspellings

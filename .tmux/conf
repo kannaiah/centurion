@@ -127,7 +127,7 @@ set -g status-bg default
 # default window title colors
 set-window-option -g window-status-fg black
 set-window-option -g window-status-bg default
-set-window-option -g window-status-attr bold
+set-window-option -g window-status-attr dim
 
 # active window title colors
 set-window-option -g window-status-current-fg white
