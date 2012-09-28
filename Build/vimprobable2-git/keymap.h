@@ -124,6 +124,7 @@ Key keys[] = {
 
     { 0,                    GDK_g,          GDK_i,          focus_input,{} },
     { 0,                    0,              GDK_u,          revive,     {} },
+    { GDK_CONTROL_MASK,     0,              GDK_t,          open_editor,{} },
 
         /* custom commands */
     { 0,                    GDK_g,          GDK_b,          input,      {.s = ":tabopen http://bitbucket.jasonwryan.com" } },
