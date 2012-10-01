@@ -49,7 +49,7 @@ hdd(){
 eml(){
 	maildirs="$HOME/Mail/*/INBOX/new/"
 	ml="$(find $maildirs -type f | wc -l)"
-	if [ $ml == 0 ]; then
+	if [[ $ml -eq 0 ]]; then
 		echo "0"
 	else
 		echo -en "\x03$ml\x01"
@@ -58,7 +58,7 @@ eml(){
 
 pac(){
 	pup="$(pacman -Qqu --dbpath /tmp/checkup-db-jason/ | wc -l)"
-	if [ $pup = 0 ]; then
+	if [[ $pup -eq 0 ]]; then
 	    echo "0"
 	else
 	    echo -en "\x05$pup\x01"
@@ -67,7 +67,7 @@ pac(){
 
 ups(){
     ups="$(awk '$0 !~ /tamsyn/' /tmp/aurupdates* | wc -l)"
-    if [ $ups = 0 ]; then
+    if [[ $ups -eq 0 ]]; then
         echo "0"
     else echo -en "\x05$ups\x01"
     fi
@@ -75,7 +75,7 @@ ups(){
 
 aur(){
     aur="$(awk '$0 !~ /^No /' /tmp/aurphans* | wc -l)"
-    if [ $aur -gt 0 ]; then
+    if [[ $aur -gt 0 ]]; then
         echo -en "\x03*\x01"
     fi
 }

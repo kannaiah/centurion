@@ -34,10 +34,10 @@ for i in "${actions[@]}"; do
 done
 
 
-if [[ $# -eq 2 ]] && [[ "$super" == "yes" ]]; then 
+if [[ ( $# -eq 2 && "$super" == "yes" ) ]]; then 
     sudo systemctl "$1" "$2".service
 
-elif [[ $# -eq 2 ]] && [[ "$1" == "read" ]]; then
+elif [[ ( $# -eq 2 && "$1" == "read" ) ]]; then
     less -FX /usr/lib/systemd/system/"$2".service
     
 elif [[ $# -eq 2 ]]; then

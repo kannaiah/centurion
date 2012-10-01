@@ -6,7 +6,7 @@ new="tmux -f $HOME/.tmux/conf new -s secured"
 old="tmux attach -t secured -d"
 
 if [[ -z "$SSH_AUTH_SOCK" ]]; then
-    eval `ssh-agent`
+    eval $(ssh-agent)
     trap "kill $SSH_AGENT_PID" 0
 fi
 

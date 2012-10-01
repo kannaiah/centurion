@@ -12,7 +12,7 @@ searchdirs=("/var/abs/core" "/var/abs/extra" "/var/abs/community")
 
 for name in "$@"; do 
     for repo in "${searchdirs[@]}"; do 
-        if [[ -d ${repo}/${name} && -f ${repo}/${name}/PKGBUILD ]]; then
+        if [[ ( -d ${repo}/${name} && -f ${repo}/${name}/PKGBUILD ) ]]; then
         target="${repo}/${name}" 
         repos="${repo##*/}"
         avers="$(awk -F= '/^pkg(v|r)/ {s=s (s?"-":"") $2} END {printf "%s", s}' <${target}/PKGBUILD)" 
