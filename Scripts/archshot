@@ -14,7 +14,7 @@ ec=$'\e[0m'
 machine=$(</proc/sys/kernel/hostname)
 arch=$(uname -m)
 mykernel=$(awk '{print $2}' <(pacman -Q linux))
-mycpu=$(awk 'sub(/\(TM\)/, ":") {print $5,$6,$7,$8}' <(uname -p))
+mycpu=$(awk '/cpu/ {flag=1} /!/ {flag=0} flag && /Intel/ {sub(/\(TM\)/,""); print $5,$6,$7,$8;exit}' /proc/cpuinfo)
 myuptime=$(awk '{ sub(/,/,""); if (NF==10) print $3; else if (NF>10) print $3,$4}' <(uptime))
 myshell=$(echo ${SHELL##*/})
 myterm=$(echo $TERM)
