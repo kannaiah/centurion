@@ -1,6 +1,17 @@
 #!/bin/bash
 # email reminder notes using at(1)...
 
+usage() {
+    cat <<EOF
+  Options:
+
+  -l     | list current jobs
+  -p n   | print details for job n
+  -h     | print this message
+
+EOF
+}
+
 print() {
     awk -F"|" '/gmail/ {print $1}' <(at -c "$@")
 }
@@ -9,12 +20,12 @@ list() {
     atq
 }
 
-if [[ "$1" = -p ]]; then
-    print "$2" && exit 0
-else 
-    if [[ "$1" == -l ]]; then
-    list && exit 0
-    fi
+if [[ $# -ge 1 ]]; then
+    case "$1" in
+        -p) print "$2" && exit 0 ;;
+        -l) list && exit 0 ;;
+        -h) usage && exit 0 ;;
+    esac
 fi
 
 read -p "Time of message? [HH:MM] " time
