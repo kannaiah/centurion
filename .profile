@@ -21,9 +21,9 @@ export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
 [ -f $HOME/.keychain/${HOSTNAME}-sh ] && source $HOME/.keychain/${HOSTNAME}-sh
 [ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ] && source $HOME/.keychain/${HOSTNAME}-sh-gpg
 
-# startx if on tty1 and tmux on tty2
+# startx if on TTY1 and tmux on TTY2
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-    exec xinit -- :0 -novtswitch &>/dev/null 
+    exec startx -- vt1 &>/dev/null
     logout
   elif [[ $(tty) = /dev/tty2 ]]; then
     tmux -f $HOME/.tmux/conf new -s secured

@@ -59,6 +59,7 @@ Key keys[] = {
     { GDK_CONTROL_MASK,     0,              GDK_o,          navigate,   {NavigationForward} },
     { 0,                    0,              GDK_b,          navigate,   {NavigationBack} },
     { 0,                    0,              GDK_H,          navigate,   {NavigationBack} },
+    { 0,                    0,              GDK_m,          navigate,   {NavigationForward} },
     { 0,                    0,              GDK_L,          navigate,   {NavigationForward} },
     { 0,                    0,              GDK_r,          navigate,   {NavigationReload} },
     { 0,                    0,              GDK_R,          navigate,   {NavigationForceReload} },
@@ -114,6 +115,9 @@ Key keys[] = {
     { 0,                    GDK_semicolon,  GDK_O,          input,      {.s = ";O"} },
     { 0,                    GDK_semicolon,  GDK_T,          input,      {.s = ";T"} },
     { 0,                    GDK_semicolon,  GDK_W,          input,      {.s = ";W"} },
+
+    /* this needs to be a binding using CTRL for obvious reasons */
+    { GDK_CONTROL_MASK,     0,              GDK_t,          open_editor,{} },
 
     { 0,                    GDK_VoidSymbol, GDK_Escape,     set,        {ModeNormal} },
     { GDK_CONTROL_MASK,     GDK_VoidSymbol, GDK_bracketleft,set,        {ModeNormal} },

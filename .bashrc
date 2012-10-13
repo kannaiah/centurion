@@ -133,8 +133,7 @@ search() {
 unsigned() { expac -S '%r %n %g'|awk '$3=="(null)" {print $1 "/" $2}' > unsigned.packages ; }
 
 # Mounts 
-alias centurion="sudo mount.nfs 192.168.1.100:/home/jason /media/Centurion"
-alias sentinel="sudo mount.nfs 192.168.1.200:/home/jason/Backups /media/Sentinel"
+alias sentinel="sudo mount.nfs4 192.168.1.200:/ /media/Sentinel"
 
 ####### Functions ########
 

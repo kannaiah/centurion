@@ -20,4 +20,4 @@ map <M1-c>=:set caret=false
 map <C-s> stop
 
 : external editor
-handler vimprobableedit: urxvt -title scratchpad -geometry 86x24+40+60 -e vim %s
+:handler vimprobableedit: urxvt -title scratchpad -geometry 86x24+40+60 -e vim %s
