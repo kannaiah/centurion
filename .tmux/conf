@@ -85,7 +85,8 @@ set -g bell-action any
 set -g display-panes-time 2000
 
 # start window indexing at one instead of zero
-set -g base-index 1
+set -g base-index 0
+set -g renumber-windows on
 
 # enable wm window titles
 set -g set-titles on

@@ -44,8 +44,10 @@ cpu(){
 	}
 
 hdd(){
-    hd="$(awk '{i = $5} /boot/ {a = i}; /root/ {b = i}; /home/ {c = i} END \
-        {print  a,b,c}' <(df -P))"
+    hd="$(awk '
+    {i=$5} /boot/ {a=i}; /root/ {b=i}; /home/ {c=i}; /media/ {d=i} 
+    END {if (/media/) print a,b,c,d; else print a,b,c}
+    ' <(df -P))"
 	echo -e "\x08$hd\x01"
 }
 
