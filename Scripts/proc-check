@@ -15,8 +15,8 @@ for app in "${list[@]}"; do
                     ;;
         mpdscribble) mpdscribble & 
                     ;;
-          xautolock) xautolock -time 8 -locker "i3lock -c 302B54" \
-                     -nowlocker "i3lock -c 302B54" &
+          xautolock) xautolock -time 8 -locker "slock" \
+                     -nowlocker "slock" &
                     ;;
         esac
     fi

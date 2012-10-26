@@ -115,7 +115,7 @@ ext_image_viewer 1
 max_load_image 4
 auto_image 1
 pseudo_inlines 1
-display_image 1
+display_image 0
 view_unseenobject 0
 ignore_null_img_alt 1
 display_ins_del 1

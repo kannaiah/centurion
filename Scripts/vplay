@@ -1,0 +1,22 @@
+#!/bin/bash
+# wrapper to prevent screen blanking
+
+usage() {
+    printf "%s\n" "Usage: ${0##*/} /path/to/file" 
+    exit 1
+}
+
+case $# in
+    1)  if [[ "$1" =~ "Videos" ]]; then
+            xset dpms 0 0 0
+            xautolock -disable
+            mplayer "$1"
+            xautolock -enable
+            xset dpms 900 900 900
+        else
+            usage
+        fi
+        ;;
+    *) usage
+        ;;
+esac
