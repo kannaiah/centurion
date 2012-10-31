@@ -48,7 +48,7 @@ unclutter -noevents -idle 5 &
 $HOME/Scripts/proc-check &
 
 # automounting
-udiskie &
+udiskie -s &
 
 # ---- window manager ----
 # launch dwm
