@@ -1,0 +1,12 @@
+#!/bin/bash
+# screensaving when streaming video
+
+case "$1" in
+    on) xautolock -disable &&
+        xset s off; xset s noblank; xset -dpms
+        ;;
+    off) xautolock -enable &&
+        xset s on; xset s blank; xset +dpms
+        ;;
+esac
+

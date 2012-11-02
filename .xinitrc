@@ -48,11 +48,8 @@ unclutter -noevents -idle 5 &
 $HOME/Scripts/proc-check &
 
 # automounting
-udiskie -s &
+/usr/bin/udiskie -s &
 
 # ---- window manager ----
 # launch dwm
 exec $HOME/Scripts/dwm-start
-
-# openbox
-#exec openbox-session
