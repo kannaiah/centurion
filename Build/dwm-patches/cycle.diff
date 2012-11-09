@@ -1,0 +1,60 @@
+--- a/dwm.c 2011-12-19 16:02:46.000000000 +0100
++++ b/dwm.c 2011-12-28 12:26:06.294936901 +0100
+@@ -251,6 +251,9 @@ static int xerror(Display *dpy, XErrorEv
+ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
++static void cycle(const Arg *arg);
++static int shifttag(int dist);
++static void tagcycle(const Arg *arg);
+
+ /* variables */
+ static const char broken[] = "broken";
+@@ -2127,6 +2130,31 @@ zoom(const Arg *arg) {
+ }
+
+ int
++shifttag(int dist) {
++   int seltags = selmon->tagset[selmon->seltags] & TAGMASK;
++
++   if(dist > 0) // left circular shift
++       seltags = (seltags << dist) | (seltags >> (LENGTH(tags) - dist));
++   else // right circular shift
++       seltags = (seltags >> (- dist)) | (seltags << (LENGTH(tags) + dist));
++
++   return seltags;
++}
++
++void
++cycle(const Arg *arg) {
++   const Arg a = { .i = shifttag(arg->i) };
++   view(&a);
++}
++
++void
++tagcycle(const Arg *arg) {
++   const Arg a = { .i = shifttag(arg->i) };
++   tag(&a);
++   view(&a);
++}
++
++int
+ main(int argc, char *argv[]) {
+    if(argc == 2 && !strcmp("-v", argv[1]))
+        die("dwm-"VERSION", © 2006-2011 dwm engineers, see LICENSE for details\n");
+
+--- a/config.h  2011-12-19 16:02:46.000000000 +0100
++++ b/config.h  2011-12-28 12:29:47.037074371 +0100
+@@ -74,6 +74,10 @@ static Key keys[] = {
+    { MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+    { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+    { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
++   { MODKEY,                       XK_Left,   cycle,          {.i = -1 } },
++   { MODKEY,                       XK_Right,  cycle,          {.i = +1 } },
++   { MODKEY|ControlMask,           XK_Left,   tagcycle,       {.i = -1 } },
++   { MODKEY|ControlMask,           XK_Right,  tagcycle,       {.i = +1 } },
+    TAGKEYS(                        XK_1,                      0)
+    TAGKEYS(                        XK_2,                      1)
+    TAGKEYS(                        XK_3,                      2)
+
+

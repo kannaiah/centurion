@@ -1,0 +1,51 @@
+--- a/dwm.c	2010-08-03 20:15:32.000000000 +1200
++++ b/dwm.c	2010-08-03 20:15:12.000000000 +1200
+# updated lolilolicon's patch
+@@ -204,6 +204,7 @@
+ static void quit(const Arg *arg);
+ static void resize(Client *c, int x, int y, int w, int h, Bool interact);
+ static void resizeclient(Client *c, int x, int y, int w, int h);
++static void resize_orig_gapless(Client *c, int x, int y, int w, int h, Bool interact);
+ static void resizemouse(const Arg *arg);
+ static void restack(Monitor *m);
+ static void run(void);
+@@ -1189,7 +1190,7 @@
+ 	if(n > 0) /* override layout symbol */
+ 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+ 	for(c = nexttiled(m->clients); c; c = nexttiled(c->next))
+-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, False);
++		resize_orig_gapless(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, False);
+ }
+ 
+ void
+@@ -1235,7 +1236,7 @@
+ 					togglefloating(NULL);
+ 			}
+ 			if(!selmon->lt[selmon->sellt]->arrange || c->isfloating)
+-				resize(c, nx, ny, c->w, c->h, True);
++				resize_orig_gapless(c, nx, ny, c->w, c->h, True);
+ 			break;
+ 		}
+ 	} while(ev.type != ButtonRelease);
+@@ -1345,6 +1346,21 @@
+ resizeclient(Client *c, int x, int y, int w, int h) {
+ 	XWindowChanges wc;
+ 
++		c->oldx = c->x = wc.x = x + gappx;
++		c->oldy = c->y = wc.y = y + gappx;
++		c->oldw = c->w = wc.width = w - 2 * gappx;
++		c->oldh = c->h = wc.height = h - 2 * gappx;
++		wc.border_width = c->bw;
++		XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
++		configure(c);
++		XSync(dpy, False);
++	
++}
++
++void
++resize_orig_gapless(Client *c, int x, int y, int w, int h, Bool interact) {
++	XWindowChanges wc;
++
+ 	c->oldx = c->x; c->x = wc.x = x;
+ 	c->oldy = c->y; c->y = wc.y = y;
+ 	c->oldw = c->w; c->w = wc.width = w;
