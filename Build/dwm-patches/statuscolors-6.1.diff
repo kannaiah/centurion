@@ -217,16 +217,3 @@
  	if(setfocus) {
  		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
  		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
-@@ -2040,8 +2079,11 @@
- 			wmh->flags &= ~XUrgencyHint;
- 			XSetWMHints(dpy, c->win, wmh);
- 		}
--		else
-+		else {
- 			c->isurgent = (wmh->flags & XUrgencyHint) ? True : False;
-+			if(c->isurgent)
-+				XSetWindowBorder(dpy, c->win, dc.colors[2][ColBorder].pixel);
-+		}
- 		if(wmh->flags & InputHint)
- 			c->neverfocus = !wmh->input;
- 		else
