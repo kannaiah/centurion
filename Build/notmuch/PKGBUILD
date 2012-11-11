@@ -4,7 +4,7 @@
 
 pkgname=notmuch
 pkgver=0.14
-pkgrel=1
+pkgrel=2
 pkgdesc="Notmuch is not much of an email program"
 arch=(i686 x86_64 mips64el)
 url="http://notmuchmail.org/"
@@ -17,7 +17,6 @@ optdepends=('emacs: for using the emacs interface'
             'ruby: for using the ruby bindings'
             'gnupg: for email encryption')
 options=(!distcc !makeflags)
-md5sums=('5eb3f225d3eb37862932f6baa5780d15')
 
 source=("http://notmuchmail.org/releases/${pkgname}-${pkgver}.tar.gz")
 
@@ -48,3 +47,4 @@ package(){
 # Remove conflicting zsh completion
   rm -r ${pkgdir}/usr/share/zsh
 }
+md5sums=('5eb3f225d3eb37862932f6baa5780d15')
