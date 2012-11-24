@@ -8,7 +8,7 @@ color indicator white blue
 set from      = "jasonryan@fastmail.fm"
 set sendmail  = "/usr/bin/msmtp -a Fastmail"
 set mbox      = "+Fastmail/archive"
-unset record
+set record    = "+Fastmail/INBOX.Sent Items"
 set postponed = "+Fastmail/drafts"
 
 macro index E "<change-folder>+Fastmail/archive<enter><limit>~B " "search everything"

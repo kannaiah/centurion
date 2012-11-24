@@ -38,15 +38,17 @@ BLK                01;33;40   # block device driver
 CHR                01;35;40   # character device driver
 ORPHAN             01;30
 #EXEC              01;31 
+STICKY_OTHER_WRITABLE 01;33   # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE     01;35      # dir that is other-writable (o+w) and not sticky
+STICKY             01;34      # dir with the sticky bit set (+t) and not other-writable
 
-
-.cmd               01;32 # executables (bright green)
+.cmd               01;32      # executables (bright green)
 .exe               01;32
 .com               01;32
 .btm               01;32
 .bat               01;32
 
-.tar               00;33 # archives or compressed (bright yellow)
+.tar               00;33      # archives or compressed (bright yellow)
 .tgz               00;33
 .zip               00;33
 .gz                00;33
@@ -56,7 +58,7 @@ ORPHAN             01;30
 .tgz               00;33
 .xz                00;33
 
-.jpg               00;36 # image formats (cyan)
+.jpg               00;36      # image formats (cyan)
 .gif               00;36
 .bmp               00;36
 .xbm               00;36
@@ -72,7 +74,7 @@ ORPHAN             01;30
 .pcx               00;36
 .ppm               00;36
 
-.mp3               00;32 # media (green)
+.mp3               00;32      # media (green)
 .fla               00;32
 .mid               00;32
 .wav               00;32
@@ -85,7 +87,7 @@ ORPHAN             01;30
 .fig.gz            00;31
 .sfc.gz            00;31
 
-.mpg               01;35 # movies (magenta)
+.mpg               01;35     # movies (magenta)
 .mpeg              01;35
 .mkv               01;35
 .m4v               01;35
