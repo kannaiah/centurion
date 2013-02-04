@@ -1,5 +1,6 @@
 #!/bin/bash
 # Basic info script for screenshot
+# Requires: scrot, fbset & fbgrab
 
 # installed window managers
 wms=(dwm echinus i3 monsterwm scrotwm)
@@ -15,7 +16,7 @@ machine=$(</proc/sys/kernel/hostname)
 arch=$(uname -m)
 mykernel=$(awk '{print $2}' <(pacman -Q linux))
 mycpu=$(awk '/cpu/ {flag=1} /!/ {flag=0} flag && /Intel/ {sub(/\(TM\)/,""); print $5,$6,$7,$8;exit}' /proc/cpuinfo)
-myuptime=$(awk '{ sub(/,/,""); if (NF==10) print $3; else if (NF>10) print $3,$4}' <(uptime))
+myuptime=$(awk -F"[, ]" '{ if (NF==17) print $4; else print $4,$5 }' <(uptime))
 myshell=$(echo ${SHELL##*/})
 myterm=$(echo $TERM)
 myedit=$(echo $EDITOR)
@@ -36,9 +37,9 @@ if [[ "$DISPLAY" ]]; then
     # screenshot command
     shot="scrot -cd5 ${machine}-$(date +%d%m%y).png"
 else
-    myres="Framebuffer"
+    myres=$(awk -F"[\" ]" '/^mode/ {print $3}' <(fbset -s))
     wm="TTY"
-    myfont=$(awk -F\" '{print $2}' <(grep "^CONSOLEFONT" /etc/rc.conf))
+    myfont=$(awk -F= '/^FONT/ {print $2}' /etc/vconsole.conf)
     # screenshot command
     shot="fbgrab -s5 fbgrab.png"
 fi

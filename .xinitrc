@@ -19,7 +19,7 @@ xrdb -merge $HOME/.Xresources
 setxkbmap -option terminate:ctrl_alt_bksp 
 
 # disable CapsLock & map to Escape
-setxkbmap -option caps:escape 
+setxkbmap -option caps:swapescape 
 
 # compose key
 setxkbmap -option compose:ralt

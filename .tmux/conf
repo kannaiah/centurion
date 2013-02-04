@@ -133,7 +133,7 @@ set-window-option -g window-status-attr dim
 # active window title colors
 set-window-option -g window-status-current-fg white
 set-window-option -g window-status-current-bg default
-set-window-option -g window-status-current-attr bright
+set-window-option -g window-status-current-attr dim
 
 # command/message line colors
 set -g message-fg white

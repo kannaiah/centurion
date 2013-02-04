@@ -19,3 +19,5 @@ map <C-c>=:set caret=true
 map <M1-c>=:set caret=false
 map <C-s> stop
 
+: search engines
+searchengine s http://www.google.com/search?q=site:unix.stackexchange.com+%s

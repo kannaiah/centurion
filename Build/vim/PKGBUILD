@@ -1,37 +1,30 @@
-# $Id: PKGBUILD 169591 2012-10-24 01:48:33Z tdziedzic $
-# Contributor: Jan "heftig" Steffens <jan.steffens@gmail.com>
-# Maintainer: tobias [ tobias at archlinux org ]
-# Maintainer: Daniel J Griffiths <ghost1227@archlinux.us>
+# Just plain vim
 
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
 _topver=7.3
-_patchlevel=712
-__hgrev=57e8b75298d6
+_patchlevel=754
+__hgrev=52bfa939fc07
 _versiondir="vim${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
 pkgrel=1
 arch=('i686' 'x86_64')
-groups=('modified')
 license=('custom:vim')
 url="http://www.vim.org"
-makedepends=('gpm' 'python2' 'libxt' 'desktop-file-utils')
+makedepends=('python2' 'libxt')
 source=("ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz"
         "ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz.sig"
         'pythoncomplete.vim::http://www.vim.org/scripts/download_script.php?src_id=10872'
         'vimrc'
-        'archlinux.vim'
-        'gvim.desktop')
-md5sums=('368435a6494a2559565ce4d668c4513c'
-         '1613bbbd2a794cd321db09c6cfe2d35f'
+        'archlinux.vim')
+md5sums=('187bec934962a7b5418dbe233e606eef'
+         '3a41d935a372c712088cdee997e1287f'
          '6e7adfbd5d26c1d161030ec203a7f243'
          '20fceda56badf201695c57999b0bc609'
-         '10353a61aadc3f276692d0e17db1478e'
-         'd90413bd21f400313a785bb4010120cd')
+         '10353a61aadc3f276692d0e17db1478e')
 
 # source PKGBUILD && mksource
 mksource() {
-
   [[ -x /usr/bin/hg ]] || (echo "hg not found. Install mercurial." && return 1)
 
   __hgroot='http://vim.googlecode.com/hg/'
@@ -52,7 +45,11 @@ mksource() {
   rm ${pkgname}-${pkgver}/{.hgignore,.hgtags}
   tar -cJf ${pkgname}-${pkgver}.tar.xz ${pkgname}-${pkgver}/*
   rm -r ${pkgname}-${pkgver}
-  #gpg --detach-sign --use-agent -u ${GPGKEY} ${pkgname}-${pkgver}.tar.xz
+
+  gpg --detach-sign ${pkgname}-${pkgver}.tar.xz
+
+  scp ${pkgname}-${pkgver}.tar.xz ger:/srv/ftp/other/vim/
+  scp ${pkgname}-${pkgver}.tar.xz.sig ger:/srv/ftp/other/vim/
 }
 
 build() {
@@ -74,12 +71,21 @@ cd "${srcdir}"
 
   cd "${srcdir}"/vim-build
 
-  ./configure --prefix=/usr --localstatedir=/var/lib/vim \
-    --with-features=big --with-compiledby=ArchLinux \
-    --enable-gpm --enable-acl --with-x=yes \
-    --disable-gui --enable-multibyte --enable-cscope \
-    --disable-netbeans --enable-perlinterp --disable-pythoninterp \
-    --disable-python3interp --disable-rubyinterp --disable-luainterp
+  ./configure \
+    --prefix=/usr \
+    --localstatedir=/var/lib/vim \
+    --with-features=big \
+    --with-compiledby=ArchLinux \
+    --with-x=yes \
+    --enable-acl \
+    --disable-gui \
+    --enable-multibyte \
+    --disable-netbeans \
+    --enable-perlinterp \
+    --disable-pythoninterp \
+    --disable-python3interp \
+    --disable-rubyinterp \
+    --disable-luainterp
 
   make
 }
@@ -103,7 +109,6 @@ package_vim() {
     rm -f evim.1    # this does not make sense if we have no GUI
   done
 
-  # Runtime provided by runtime package
   mv "${pkgdir}"/usr/share/vim "${srcdir}"/runtime-install
 
   # license

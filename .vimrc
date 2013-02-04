@@ -36,6 +36,9 @@ let g:loaded_matchparen=1
 let g:is_bash=1
 let g:vimsyn_noerror=1
 
+" set path for latexsuite
+set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+
 " tabs and indenting
 set tabstop=4           " tabs appear as n number of columns
 set shiftwidth=4        " n cols for auto-indenting

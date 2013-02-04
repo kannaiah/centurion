@@ -144,6 +144,7 @@ Command commands[COMMANDSIZE] = {
     { "stop",                                          	navigate,         {NavigationCancel} },
     { "t",                                             	open_arg,         {TargetNew} },
     { "tabopen",                                       	open_arg,         {TargetNew} },
+    { "ha",                                         	print_frame,      {0} },
     { "print",                                         	print_frame,      {0} },
     { "bma",                                           	bookmark,         {0} },
     { "bookmark",                                      	bookmark,         {0} },

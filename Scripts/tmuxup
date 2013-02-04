@@ -1,9 +1,8 @@
 #!/bin/bash
-awk 'gsub(/,/,"") { 
-    if (NF==10) 
-        print $3 
-    else 
-    if (NF==12) 
-        print $3,$4,$5
+awk -F"[, ]" '{ 
+    if (NF==17)
+        print $4
+    else
+        print $4,$5
     }' <(uptime)
 

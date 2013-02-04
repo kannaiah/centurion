@@ -11,6 +11,7 @@ export BROWSER="/usr/bin/vimprobable2"
 export PRINTER="HP_psc_1200_series"
 export http_proxy="http://127.0.0.1:8118"
 export https_proxy="http://127.0.0.1:8118"
+export SYSTEMD_PAGER="/usr/bin/less -R"
 
 # export other directories to PATH
 PATH=$PATH:/home/jason/Scripts:/usr/lib/surfraw/

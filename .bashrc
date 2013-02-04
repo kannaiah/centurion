@@ -109,9 +109,6 @@ alias pacman="pacman-color"
 # sudo pacman -Syu by typing pacup (sudo must be installed and configured first)
 alias pacup="sudo pacman-color -Syu"
 
-# Clean cache
-alias clean="sudo pacman -Sc"
-
 # List updates
 alias lspkg="pacman -Qqu --dbpath /tmp/checkup-db-jason/"
 
@@ -120,6 +117,9 @@ alias orphans="pacman -Qtdq > ~/orphans.txt && less orphans.txt"
 
 # sudo pacman backup packages to Dropbox
 alias pacback='pacman -Qqe | grep -v "$(pacman -Qmq)" > ~/Dropbox/Centurion/pklist.txt'
+
+# check the log
+paclog() { tail -n"$1" /var/log/pacman.log ;}
 
 # coloured repo search
 search() {
