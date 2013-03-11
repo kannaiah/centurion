@@ -3,14 +3,26 @@
 
 target=$(awk '/media\/[\^A-Z]/ {print $3}' <(mount))
 
-if [[ -n "$target" ]]; then
-    udiskie-umount -s "$target" &>/dev/null
+exstatus() {
     if [[ $? = 0 ]]; then
-        printf "%s\n" "${target##*/} unmounted…"
-    else
-        printf "%s\n" "Unmounting failed."
+        printf "%s\n" "${target##*/} unmounted..."
+    else 
+        printf "%s\n" "Failed to unmount."
     fi
-else
-    printf "%s\n" "No drive mounted…"
-fi
+}
 
+if ([[ -n "$target" ]] && [[ "$target" =~ "Safebox" ]]); then
+    printf "%s\n" "Safebox mounted, exiting."
+
+elif [[ -n "$target" ]]; then
+    grep "PID" <(lsof +D "$target") &>/dev/null
+        if [[ $? -eq 0 ]]; then
+            printf "%s\n" "${target##*/} busy..."
+            exit 1
+
+        else udiskie-umount -s "$target" &>/dev/null
+             exstatus
+        fi
+else     
+    printf "%s\n" "No drive mounted..."
+fi

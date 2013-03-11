@@ -90,7 +90,6 @@ alias ttytter="Scripts/ttytter.pl"
 alias dush="du -sm *|sort -n|tail"
 alias fire="sudo ufw status verbose"
 alias pong="ping -c 3 www.google.com"
-alias sync="~/.dropbox-dist/dropboxd &"
 alias socks="ssh -D 8080 -f -C -q -N 200"
 alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
@@ -209,6 +208,11 @@ manp() { man -t "$@" | lpr -pPrinter; }
 
 # Create pdf of man page - requires ghostscript and mimeinfo
 manpdf() { man -t "$@" | ps2pdf - /tmp/manpdf_$1.pdf && xdg-open /tmp/manpdf_$1.pdf ;}
+
+# VPN
+vpnon() { sudo vpnc "$1" ; }
+vpnoff() { sudo vpnc-disconnect ; }
+vpnup() { pgrep vpnc >/dev/null && printf '%s\n' "Connected…" || printf '%s\n' "VPN down!" ; }
 
 ### Simple notes ------------------------------------------------
 n() { 

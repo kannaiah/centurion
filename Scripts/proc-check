@@ -1,7 +1,7 @@
 #!/bin/bash
 # Check if app is running on starting X
 
-list=(highlights mpd mpdscribble xautolock)  
+list=(highlights mpd mpdscribble syncapp xautolock)  
 
 for app in "${list[@]}"; do
     check=$(ps -C "$app" -opid=)
@@ -12,6 +12,8 @@ for app in "${list[@]}"; do
                 mpd) mpd $HOME/.mpd/mpd.conf 
                     ;;
         mpdscribble) mpdscribble & 
+                    ;;
+            syncapp) $HOME/Scripts/syncapp 
                     ;;
           xautolock) xautolock -time 8 -locker "slock" \
                      -nowlocker "slock" &
