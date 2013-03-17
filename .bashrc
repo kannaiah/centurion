@@ -57,6 +57,9 @@ export GREP_COLOR="1;31"
 alias grep="grep --color=auto"
 alias ls="ls --color=auto"
 
+# command not found
+source /usr/share/doc/pkgfile/command-not-found.bash
+
 # TTYtter hack
 export PERL_SIGNALS=unsafe
 
@@ -160,6 +163,9 @@ extract() {
       echo "\`$1' is not a valid file"
   fi
 }
+
+# processes
+pids() { ps aux | grep $1 ;}
 
 # Motherboard temp
 temp() { awk '/^MB/ { sub(/+/, ""); print $3}' <(sensors) ;}

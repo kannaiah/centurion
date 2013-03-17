@@ -4,7 +4,6 @@
 " vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=vim:
 "---------------------------------------------------------------
 
-map ; :
 syntax on
 filetype plugin on
 filetype indent on
