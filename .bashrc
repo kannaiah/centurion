@@ -96,6 +96,7 @@ alias pong="ping -c 3 www.google.com"
 alias socks="ssh -D 8080 -f -C -q -N 200"
 alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
+alias pi="ssh pi -t 'LANG=en_NZ.utf-8 tmux a -d'"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
 alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 
@@ -224,7 +225,7 @@ vpnup() { pgrep vpnc >/dev/null && printf '%s\n' "Connected…" || printf '%s\n'
 n() { 
   local arg files=()
   for arg; do 
-      files+=( ~/".notes/$arg" )
+      files+=( $HOME/".notes/$arg" )
   done
   ${EDITOR:-vi} "${files[@]}"; 
 }
@@ -240,7 +241,7 @@ nls() {
 # TAB completion for notes
 _notes() {
   local files=($HOME/.notes/**/"$2"*)
-  [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##~/.notes/}" )
+  [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##$HOME/.notes/}" )
 }
 complete -o default -F _notes n
 

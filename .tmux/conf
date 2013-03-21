@@ -135,6 +135,11 @@ set-window-option -g window-status-current-fg white
 set-window-option -g window-status-current-bg default
 set-window-option -g window-status-current-attr dim
 
+# set bell colours
+set -g window-status-bell-bg default                                                                      
+set -g window-status-bell-fg red
+set -g window-status-bell-attr bright
+
 # command/message line colors
 set -g message-fg white
 set -g message-bg black
