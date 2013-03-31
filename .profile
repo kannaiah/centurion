@@ -15,7 +15,9 @@ export SYSTEMD_PAGER="/usr/bin/less -R"
 
 # export other directories to PATH
 PATH=$PATH:/home/jason/Scripts:/usr/lib/surfraw/
-export PATH="$PATH:$(ruby -rubygems -e 'puts Gem.user_dir')/bin"
+
+# ruby rvm call
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
 
 # start keychain
 /usr/bin/keychain -Q -q --nogui id_dsa id_rsa alioth archer bb B1BD4E40
