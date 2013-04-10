@@ -18,8 +18,7 @@ PATH=$PATH:$HOME/Scripts:/usr/lib/surfraw/
 
 # ruby version management
 if [[ -e /usr/local/share/chruby ]]; then
-    source /usr/local/share/chruby/chruby.sh
-    source /usr/local/share/chruby/auto.sh
+    source /usr/local/share/chruby/{chruby,auto}.sh
     chruby $(<$HOME/.ruby-version)
 fi
 
