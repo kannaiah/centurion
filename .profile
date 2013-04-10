@@ -14,10 +14,14 @@ export https_proxy="http://127.0.0.1:8118"
 export SYSTEMD_PAGER="/usr/bin/less -R"
 
 # export other directories to PATH
-PATH=$PATH:/home/jason/Scripts:/usr/lib/surfraw/
+PATH=$PATH:$HOME/Scripts:/usr/lib/surfraw/
 
-# ruby rvm call
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" 
+# ruby version management
+if [[ -e /usr/local/share/chruby ]]; then
+    source /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/auto.sh
+    chruby $(<$HOME/.ruby-version)
+fi
 
 # start keychain
 /usr/bin/keychain -Q -q --nogui id_dsa id_rsa alioth archer bb B1BD4E40
@@ -31,4 +35,5 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
   elif [[ $(tty) = /dev/tty2 ]]; then
     tmux -f $HOME/.tmux/conf new -s secured
 fi
+
 

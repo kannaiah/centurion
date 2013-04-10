@@ -99,6 +99,7 @@ alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
 alias pi="ssh pi -t 'LANG=en_NZ.utf-8 tmux a -d'"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
 alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
+alias backmusic="rsync -azPv --delete --exclude=Juno* Music /media/Apollo"
 
 # Power
 alias reboot="sudo shutdown -r now"
@@ -106,11 +107,8 @@ alias shut="sudo shutdown -h now"
 
 ######## Pacman ########
 
-# Colourized output
-alias pacman="pacman-color"
-
 # sudo pacman -Syu by typing pacup (sudo must be installed and configured first)
-alias pacup="sudo pacman-color -Syu"
+alias pacup="sudo pacman -Syu"
 
 # List updates
 alias lspkg="pacman -Qqu --dbpath /tmp/checkup-db-jason/"

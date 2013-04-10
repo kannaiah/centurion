@@ -87,16 +87,17 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .fig.gz            00;31
 .sfc.gz            00;31
 
-.mpg               01;35     # movies (magenta)
-.mpeg              01;35
+.avi               01;35
+.flc               01;35
+.fli               01;35
+.flv               01;35
 .mkv               01;35
 .m4v               01;35
 .mp4               01;35
-.avi               01;35
 .mov               01;35
-.fli               01;35
-.flc               01;35
-.flv               01;35
+.mpg               01;35     # movies (magenta)
+.mpeg              01;35
+.ogv               01;35
 
 # all of the rest
 .PL                00;36
@@ -134,15 +135,16 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .example           00;36
 .fehbg             00;36
 .fonts             00;36
+.gemrc             00;32
 .git               00;36
 .gitconfig         01;34
 .gitignore         00;36
-.hgrc              01;34
-.hgignore          01;34
+.hgrc              00;35
+.hgignore          00;35
 .go                01;34
 .gpg-agent-info    01;31
 .gtk-bookmarks     01;34
-.gtkrc-2\.0        01;34
+.gtkrc-2.0         01;34
 .h                 01;34
 .hs                01;34
 .htm               01;34
@@ -169,7 +171,7 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .mfasl             00;33
 .mi                00;33
 .mkd               00;33
-.msmtprc           00;33
+.msmtprc           01;31
 .mtx               00;33
 .muttrc            00;33
 .muttprintrc       00;33
@@ -195,7 +197,7 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .rb                00;31
 .rdf               00;31
 .ru                00;31
-.sdcv_history      00;32
+.ruby-version      00;32
 .sed               00;31
 .sfv               00;31
 .sh                00;31
@@ -215,15 +217,21 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .yml               01;35
 .zsh               01;35
 .txt               01;35
-.ttytterkey        00;31
+.ttytterkey        01;31
 .ttytterrc         01;35
 .urlview           01;35
 .vim               01;35
-.vimrc             01;35
-.xinitrc           01;31 
+.vimrc             00;32
+.xinitrc           00;33 
 .Xauthority        01;31
 .Xmodmap           00;31
 .Xresources        01;33
+.zcompdump         00;31
+.zlogin            00;31
+.zprofile          00;31
+.zsh_history       00;31
+.zshenv            00;31
+.zshrc             00;31
 
 # Below, there should be one TERM entry for each termtype that is colorizable
 TERM Eterm

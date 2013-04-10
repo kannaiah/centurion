@@ -7,3 +7,4 @@ audio/*; mplayer %s
 text/*; vim %s
 application/pdf; evince %s
 application/msword; libreoffice %s
+application/docx; libreoffice %s
