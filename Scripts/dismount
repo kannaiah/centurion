@@ -15,8 +15,8 @@ if ([[ -n "$target" ]] && [[ "$target" =~ "Safebox" ]]); then
     printf "%s\n" "Safebox mounted, exiting."
 
 elif [[ -n "$target" ]]; then
-    grep "PID" <(lsof +D "$target") &>/dev/null
-        if [[ $? -eq 0 ]]; then
+    grep "PID" <(lsof +D "$target" &>/dev/null)
+         if [[ $? -eq 0 ]]; then
             printf "%s\n" "${target##*/} busy..."
             exit 1
 

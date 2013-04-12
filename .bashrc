@@ -63,10 +63,16 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 # TTYtter hack
 export PERL_SIGNALS=unsafe
 
+# ruby version management
+if [[ -e /usr/local/share/chruby ]]; then
+    source /usr/local/share/chruby/{chruby,auto}.sh
+    chruby $(<$HOME/.ruby-version)
+fi
+
 ######## Aliases ########
 
 #The 'ls' family
-#---------------------------
+# --------------------------
 alias ll="ls -l --group-directories-first"
 alias ls="ls -h --color"   # add colors for filetype recognition
 alias la="ls -a"            # show hidden files
@@ -89,7 +95,6 @@ alias blog="cd ~/VCS/octopress"
 alias tmux="tmux -f ~/.tmux/conf"
 alias 200="ssh 200 -t tmux a -d"
 alias sent="ssh -t cent ssh -t 200"
-alias ttytter="Scripts/ttytter.pl"
 alias dush="du -sm *|sort -n|tail"
 alias fire="sudo ufw status verbose"
 alias pong="ping -c 3 www.google.com"
@@ -99,7 +104,8 @@ alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
 alias pi="ssh pi -t 'LANG=en_NZ.utf-8 tmux a -d'"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
 alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
-alias backmusic="rsync -azPv --delete --exclude=Juno* Music /media/Apollo"
+alias backmusic="rsync -azPv --exclude=Juno* Music /media/Apollo"
+alias ttytter="Scripts/ttytter.pl -keyf=$HOME/.config/ttytter/key -rc=$HOME/.config/ttytter/jwr"
 
 # Power
 alias reboot="sudo shutdown -r now"
@@ -107,7 +113,6 @@ alias shut="sudo shutdown -h now"
 
 ######## Pacman ########
 
-# sudo pacman -Syu by typing pacup (sudo must be installed and configured first)
 alias pacup="sudo pacman -Syu"
 
 # List updates

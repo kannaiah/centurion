@@ -1,5 +1,7 @@
 # source .bashrc               
-case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
+case "$-" in *i*) 
+    [[ -r $HOME/.bashrc ]] && source $HOME/.bashrc ;; 
+esac
 
 # setup environment
 export LC_ALL=
@@ -16,16 +18,10 @@ export SYSTEMD_PAGER="/usr/bin/less -R"
 # export other directories to PATH
 PATH=$PATH:$HOME/Scripts:/usr/lib/surfraw/
 
-# ruby version management
-if [[ -e /usr/local/share/chruby ]]; then
-    source /usr/local/share/chruby/{chruby,auto}.sh
-    chruby $(<$HOME/.ruby-version)
-fi
-
 # start keychain
 /usr/bin/keychain -Q -q --nogui id_dsa id_rsa alioth archer bb B1BD4E40
-[ -f $HOME/.keychain/${HOSTNAME}-sh ] && source $HOME/.keychain/${HOSTNAME}-sh
-[ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ] && source $HOME/.keychain/${HOSTNAME}-sh-gpg
+[[ -f $HOME/.keychain/${HOSTNAME}-sh ]] && source $HOME/.keychain/${HOSTNAME}-sh
+[[ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ]] && source $HOME/.keychain/${HOSTNAME}-sh-gpg
 
 # startx if on TTY1 and tmux on TTY2
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
@@ -34,5 +30,4 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
   elif [[ $(tty) = /dev/tty2 ]]; then
     tmux -f $HOME/.tmux/conf new -s secured
 fi
-
 

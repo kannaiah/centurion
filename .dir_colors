@@ -81,6 +81,7 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .au                00;32
 .nes               00;31
 .smc               00;31
+.sdcv_history      00;32
 .fig               00;31
 .sfc               00;31
 .smc.gz            00;31
