@@ -15,6 +15,7 @@ _gitname="vimprobable"
 _gitbranch="vimprobable2"
 source=("$_gitname::git://git.code.sf.net/p/$_gitname/code")
 md5sums=('SKIP')
+epoch=1
 
 pkgver() {
   cd "$_gitname"

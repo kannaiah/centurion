@@ -4,18 +4,18 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #-------------------------------------------------
 
-# GPG Key
-export GPGKEY=B1BD4E40
+# check for interactive
+[[ $- = *i* ]] || return
 
 # bash options ------------------------------------
 set -o vi                   # Vi mode
-set -o noclobber            # don't inadvertently overwrite files
+set -o noclobber            # do not overwrite files
 shopt -s autocd             # change to named directory
 shopt -s cdable_vars        # if cd arg is not valid, assumes its a var defining a dir
 shopt -s cdspell            # autocorrects cd misspellings
 shopt -s checkwinsize       # update the value of LINES and COLUMNS after each command if altered
 shopt -s cmdhist            # save multi-line commands in history as single line
-shopt -s histappend         # don't overwrite history
+shopt -s histappend         # do not overwrite history
 shopt -s dotglob            # include dotfiles in pathname expansion
 shopt -s expand_aliases     # expand aliases
 shopt -s extglob            # enable extended pattern-matching features
@@ -23,9 +23,6 @@ shopt -s globstar           # recursive globbing…
 shopt -s progcomp           # programmable completion
 shopt -s hostcomplete       # attempt hostname expansion when @ is at the beginning of a word
 shopt -s nocaseglob         # pathname expansion will be treated as case-insensitive
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 
 set_prompt_style () {
     if [ -n "$SSH_CLIENT" ]; then
@@ -45,8 +42,8 @@ HISTCONTROL=ignoreboth:erasedups
 PROMPT_COMMAND="history -a; history -c; history -r"
 export HISTSIZE PROMPT_COMMAND
 
-# Bash completion
-set show-all-if-ambiguous on
+# command not found
+source /usr/share/doc/pkgfile/command-not-found.bash
 
 # visual bell
 set bell-style visible
@@ -56,9 +53,6 @@ eval $(dircolors -b ~/.dir_colors)
 export GREP_COLOR="1;31"
 alias grep="grep --color=auto"
 alias ls="ls --color=auto"
-
-# command not found
-source /usr/share/doc/pkgfile/command-not-found.bash
 
 # TTYtter hack
 export PERL_SIGNALS=unsafe
@@ -107,34 +101,24 @@ alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 alias backmusic="rsync -azPv --exclude=Juno* Music /media/Apollo"
 alias ttytter="Scripts/ttytter.pl -keyf=$HOME/.config/ttytter/key -rc=$HOME/.config/ttytter/jwr"
 
-# Power
-alias reboot="sudo shutdown -r now"
-alias shut="sudo shutdown -h now"
+### Pacman ###
+# bash completion
+complete -cf pacman
 
-######## Pacman ########
-
+# update
 alias pacup="sudo pacman -Syu"
 
 # List updates
 alias lspkg="pacman -Qqu --dbpath /tmp/checkup-db-jason/"
 
 # Remove orphans
-alias orphans="pacman -Qtdq > ~/orphans.txt && less orphans.txt"
+alias orphans="pacman -Qtdq"
 
 # sudo pacman backup packages to Dropbox
 alias pacback='pacman -Qqe | grep -v "$(pacman -Qmq)" > ~/Dropbox/Centurion/pklist.txt'
 
 # check the log
 paclog() { tail -n"$1" /var/log/pacman.log ;}
-
-# coloured repo search
-search() {
-       echo -e "$(pacman -Ss $@ | sed \
-       -e 's#core/.*#\\033[1;31m&\\033[0;37m#g' \
-       -e 's#extra/.*#\\033[0;32m&\\033[0;37m#g' \
-       -e 's#community/.*#\\033[1;35m&\\033[0;37m#g' \
-       -e 's#^.*/.* [0-9].*#\\033[0;36m&\\033[0;37m#g' )"
-}
 
 unsigned() { expac -S '%r %n %g'|awk '$3=="(null)" {print $1 "/" $2}' > unsigned.packages ; }
 

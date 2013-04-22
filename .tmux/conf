@@ -6,7 +6,7 @@
 # Based on Thayer Williams' (http://cinderwick.ca)
 
 # set correct term
-set -g default-terminal screen-256color
+set -g default-terminal "screen-256color-italics"
 
 # set prefix key to ctrl+t
 unbind C-b

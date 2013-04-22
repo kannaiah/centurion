@@ -2,6 +2,7 @@ $include /etc/inputrc
 
 # TAB completion
 set show-all-if-ambiguous on
+set show-all-if-unmodified on
 
 # for vi mode
 set editing-mode vi

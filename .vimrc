@@ -14,8 +14,9 @@ else
     colorscheme miromiro 
 endif
 
+set ttyfast             " don't lag…
 set cursorline          " track position
-set nocompatible        " leave the old ways behind...
+set nocompatible        " leave the old ways behind…
 set nowrap              " don't wrap lines
 set nobackup            " disable backup files (filename~)
 set splitbelow          " place new files below the current
