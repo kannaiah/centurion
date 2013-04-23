@@ -9,47 +9,51 @@ filetype plugin on
 filetype indent on
 
 if &t_Co < 256
-    colorscheme miro8   " colourscheme for the 8 colour linux term
+    colorscheme miro8                   " colourscheme for the 8 colour linux term
 else
     colorscheme miromiro 
 endif
 
-set ttyfast             " don't lag…
-set cursorline          " track position
-set nocompatible        " leave the old ways behind…
-set nowrap              " don't wrap lines
-set nobackup            " disable backup files (filename~)
-set splitbelow          " place new files below the current
-set clipboard+=unnamed  " yank and copy to X clipboard
-set encoding=utf-8      " UTF-8 encoding for all new files
-set backspace=2         " full backspacing capabilities (indent,eol,start)
-set scrolloff=10        " keep 10 lines of context
-set number              " show line numbers
-set ww=b,s,h,l,<,>,[,]  " whichwrap -- left/right keys can traverse up/down
-set linebreak           " attempt to wrap lines cleanly
-set wildmenu            " enhanced tab-completion shows all matching cmds in a popup menu
-set spelllang=en_gb     " real English spelling
-set dictionary+=/usr/share/dict/words
-let g:is_posix=1        " POSIX shell scripts
-set wildmode=list:longest,full
-let g:loaded_matchparen=1
-let g:is_bash=1
-let g:vimsyn_noerror=1
+set ttyfast                             " don't lag…
+set cursorline                          " track position
+set nocompatible                        " leave the old ways behind…
+set nowrap                              " don't wrap lines
+set nobackup                            " disable backup files (filename~)
+set splitbelow                          " place new files below the current
+set showmatch                           " matching brackets & the like
+set clipboard+=unnamed                  " yank and copy to X clipboard
+set encoding=utf-8                      " UTF-8 encoding for all new files
+set backspace=2                         " full backspacing capabilities (indent,eol,start)
+set scrolloff=10                        " keep 10 lines of context
+set number                              " show line numbers
+set ww=b,s,h,l,<,>,[,]                  " whichwrap -- left/right keys can traverse up/down
+set linebreak                           " attempt to wrap lines cleanly
+set wildmenu                            " enhanced tab-completion shows all matching cmds in a popup menu
+set spelllang=en_gb                     " real English spelling
+set dictionary+=/usr/share/dict/words   " use standard dictionary
+set wildmode=list:longest,full          " full completion options
+let g:is_posix=1                        " POSIX shell scripts
+let g:loaded_matchparen=1               " disable parenthesis hlight plugin
+let g:is_bash=1                         " bash syntax the default for hlighting
+let g:vimsyn_noerror=1                  " hack for correct syntax hlighting
 
 " set path for latexsuite
 set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " tabs and indenting
-set tabstop=4           " tabs appear as n number of columns
-set shiftwidth=4        " n cols for auto-indenting
-set expandtab           " insert spaces instead of tabs
-set autoindent          " auto indents next new line
+set tabstop=4                           " tabs appear as n number of columns
+set shiftwidth=4                        " n cols for auto-indenting
+set expandtab                           " insert spaces instead of tabs
+set autoindent                          " auto indents next new line
 
 " searching
-set hlsearch            " highlight all search results
-set incsearch           " increment search
-set ignorecase          " case-insensitive search
-set smartcase           " uppercase causes case-sensitive search
+set hlsearch                            " highlight all search results
+set incsearch                           " increment search
+set ignorecase                          " case-insensitive search
+set smartcase                           " uppercase causes case-sensitive search
+
+" listchars
+set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
 
 " status bar info and appearance
 set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\ 
@@ -59,9 +63,10 @@ set cmdheight=1
 if has("autocmd")
 	" always jump to the last cursor position
 	autocmd BufReadPost * if line("'\"")>0 && line("'\"")<=line("$")|exe "normal g`\""|endif
+    " limit cols to 80 in various filetypes
 	autocmd BufRead *.txt set tw=80 " limit width to n cols for txt files
 	autocmd BufRead ~/.mutt/temp/mutt-* set tw=80 ft=mail nocindent spell   " width, mail syntax hilight, spellcheck
-	autocmd BufRead /tmp/vimprobable* set tw=80  nocindent 
+	autocmd BufRead /tmp/vimprobable* set tw=80 spell
     autocmd FileType tex set tw=80   " wrap at 80 chars for LaTeX files
 endif
 
