@@ -14,7 +14,7 @@ usage () {
     is-enabled |  check status
     status     |  current state
     disable    |  do not load at boot
-    
+
     list       |  list all running services
     read       |  read the relevant service file
     fail       |  list failed services
@@ -28,24 +28,24 @@ EOF
 }
 
 actions=("start" "restart" "stop" "enable" "disable")
- 
+
 for i in "${actions[@]}"; do
     [[ "$i" = "$arg1" ]] && super="yes"
 done
 
 
-if [[ ( $# -eq 2 && "$super" == "yes" ) ]]; then 
+if [[ ( $# -eq 2 && "$super" == "yes" ) ]]; then
     sudo systemctl "$1" "$2".service
 
 elif [[ ( $# -eq 2 && "$1" == "read" ) ]]; then
     less -FX /usr/lib/systemd/system/"$2".service
-    
+
 elif [[ $# -eq 2 ]]; then
     systemctl "$1" "$2".service
 fi
 
 if [[ $# -eq 1 ]]; then
-    
+
     case "$1" in
         list) systemctl list-units ;;
        fail*) systemctl --failed   ;;

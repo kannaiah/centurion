@@ -2,11 +2,11 @@
 #Script to append correct extensions to files...
 
 for file in *; do
-    	case "$file" in 
-    	*.jpeg) mv "$file" "${file%.*}.jpg"  ;;
-     	*.JPG)  mv "$file" "${file%.*}.jpg"  ;;
-     	*.AVI)  mv "$file" "${file%.*}.avi"  ;;
-    	esac
+	case "$file" in
+	*.jpeg) mv "$file" "${file%.*}.jpg"  ;;
+	*.JPG)  mv "$file" "${file%.*}.jpg"  ;;
+	*.AVI)  mv "$file" "${file%.*}.avi"  ;;
+	esac
 done
 printf "\n%s\n" "All done..."
 

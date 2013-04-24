@@ -12,7 +12,7 @@ fi
 
 printf "%s\n" "Beginning sync..."
 
-rsync -Cazs --stats "${dirs[@]}" "${back}" 
+rsync -Cazs --stats "${dirs[@]}" "${back}"
 
 sudo umount $HOME/Centurion
 

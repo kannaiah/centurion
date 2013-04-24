@@ -3,12 +3,12 @@
 
 while true; do
     $HOME/Scripts/dwm-status
-   	sleep 2
+    sleep 2
 done &
 
 while true; do
-	/usr/bin/dwm >/dev/null
-	# to log stderrors to a file 
-	#dwm 2> ~/Build/dwm/dwm.log
-done 
+    /usr/bin/dwm >/dev/null
+    # to log stderrors to a file
+    #dwm 2> ~/Build/dwm/dwm.log
+done
 

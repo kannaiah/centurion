@@ -8,7 +8,7 @@
 
 dirs=($HOME/.$1* $HOME/.$1/ $XDG_CONFIG_HOME/$1/)
 
-IFS=$'\n' 
+IFS=$'\n'
 read -r -d '' -a files < \
     <(find "${dirs[@]}" -type f \( \
            -name "*.conf" \

@@ -2,7 +2,7 @@
 # wrapper to prevent screen blanking
 
 usage() {
-    printf "%s\n" "Usage: ${0##*/} /path/to/file" 
+    printf "%s\n" "Usage: ${0##*/} /path/to/file"
     exit 1
 }
 

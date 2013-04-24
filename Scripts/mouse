@@ -4,11 +4,11 @@
 rat=$(awk '/Mouse/ { sub(/id=/,""); print $7 }' <(xinput --list))
 
 case $1 in
-    on) xinput enable "$rat"  
+    on) xinput enable "$rat"
         ;;
-   off) xinput disable "$rat" 
+   off) xinput disable "$rat"
         ;;
-     *) printf '%s\n' 'on OR off…'; exit 1 
+     *) printf '%s\n' 'on OR off…'; exit 1
         ;;
 esac
 

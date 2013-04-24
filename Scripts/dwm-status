@@ -27,21 +27,21 @@ gpu(){
 }
 
 mem(){
-	mem="$(awk '/^-/ {print $3}' <(free -m))"
-	echo -e "\x04$mem\x01"
+    mem="$(awk '/^-/ {print $3}' <(free -m))"
+    echo -e "\x04$mem\x01"
 }
 
    # CPU line courtesy Procyon:i
    # https://bbs.archlinux.org/viewtopic.php?pid=874333#p874333
 cpu(){
-	read cpu a b c previdle rest < /proc/stat
-	prevtotal=$((a+b+c+previdle))
-	sleep 0.5
-	read cpu a b c idle rest < /proc/stat
-	total=$((a+b+c+idle))
-	cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
-	echo -e "\x05$cpu%\x01"
-	}
+    read cpu a b c previdle rest < /proc/stat
+    prevtotal=$((a+b+c+previdle))
+    sleep 0.5
+    read cpu a b c idle rest < /proc/stat
+    total=$((a+b+c+idle))
+    cpu="$((100*( (total-prevtotal) - (idle-previdle) ) / (total-prevtotal) ))"
+    echo -e "\x05$cpu%\x01"
+}
 
 hdd(){
     hd=( $(awk '
@@ -56,22 +56,22 @@ hdd(){
 }
 
 eml(){
-	maildirs="$HOME/Mail/*/INBOX/new/"
-	ml="$(find $maildirs -type f | wc -l)"
-	if [[ $ml -eq 0 ]]; then
-		echo "0"
-	else
-		echo -en "\x03$ml\x01"
-	fi
+    maildirs="$HOME/Mail/*/INBOX/new/"
+    ml="$(find $maildirs -type f | wc -l)"
+    if [[ $ml -eq 0 ]]; then
+        echo "0"
+    else
+        echo -en "\x03$ml\x01"
+    fi
 }
 
 pac(){
-	pup="$(pacman -Qqu --dbpath /tmp/checkup-db-jason/ | wc -l)"
-	if [[ $pup -eq 0 ]]; then
-	    echo "0"
-	else
-	    echo -en "\x05$pup\x01"
-	fi
+    pup="$(pacman -Qqu --dbpath /tmp/checkup-db-jason/ | wc -l)"
+    if [[ $pup -eq 0 ]]; then
+        echo "0"
+    else
+        echo -en "\x05$pup\x01"
+    fi
 }
 
 ups(){
@@ -95,12 +95,11 @@ int(){
 }
 
 dte(){
-	dte="$(date "+%I:%M")"
-	echo -e "\x02$dte\x01"
+    dte="$(date "+%I:%M")"
+    echo -e "\x02$dte\x01"
 }
 
 # Pipe to status bar
 xsetroot -name "$(music) $(mbt) $(gpu) • CPU $(cpu) MEM $(mem) • HDD $(hdd) \
 • EML $(eml) PKG $(pac) AUR $(ups)$(aur) • ETH $(int) • $(dte) "
-
 

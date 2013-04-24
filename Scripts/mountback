@@ -19,7 +19,7 @@ printf '%s\n' "Starting sync…"
 rsync -azP --delete --exclude-from=Scripts/excludes.txt \
     --log-file=Documents/rsync-$(date +%d%m%y).log \
     /home/jason /etc /var/cache/pacman /media/Sentinel/Archer
-    
+
 if [ "$?" -eq 0 ]; then
     printf '%s\n' "Synched successfully; now unmounting."
     umount /media/Sentinel

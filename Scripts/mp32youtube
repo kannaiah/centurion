@@ -1,6 +1,6 @@
 #!/bin/bash
 # based on http://www.crimulus.com/2010/01/21/linux-bash-script-convert-mp3-to-avi-with-static-image-command-line/
-                      
+
 if [ $# != 3 ] ; then
     echo "Usage: $0 <image_file> <mp3_file> <output_file.avi>";
     exit 0;

@@ -22,18 +22,18 @@ myterm=$(echo $TERM)
 myedit=$(echo $EDITOR)
 mybrowser=$(echo ${BROWSER##*/})
 
-                              
+
 # if X is running
 if [[ "$DISPLAY" ]]; then
     # check for running wm
     for w in "${wms[@]}"; do
         if pidof "$w" &>/dev/null; then
-        wm=$w 
+        wm=$w
         fi
     done
 
     myres=$(awk '/current/ {print $8,$9,+$10}' <(xrandr 2>/dev/null))
-    myfont=$(awk -F: '{print $3}' <(grep "^URxvt.font" .Xresources))
+    myfont=$(awk -F: '{print $3}' <(grep "^URxvt.font" ~/.Xresources))
     # screenshot command
     shot="scrot -cd5 ${machine}-$(date +%d%m%y).png"
 else
@@ -46,9 +46,9 @@ fi
 
 # ASCII goodness…
   cat <<EOF
-${lt}                 +      
-                 #             ${tx}Machine:${ec} ${machine}${lt}       
-                ###            ${tx}Architecture:${ec} ${arch}${lt} 
+${lt}                 +
+                 #             ${tx}Machine:${ec} ${machine}${lt}
+                ###            ${tx}Architecture:${ec} ${arch}${lt}
                #####           ${tx}Kernel:${ec} ${mykernel}${lt}
                ######          ${tx}CPU:${ec} ${mycpu}${lt}
               ; #####;         ${tx}Uptime:${ec} ${myuptime}${lt}
@@ -56,15 +56,15 @@ ${lt}                 +
             +##########        ${tx}Window Manager:${ec} ${wm}${lt}
            #####${dk}######${lt}##;      ${tx}Shell:${ec} ${myshell^}${lt}
           ###${dk}############${lt}+     ${tx}Terminal:${ec} ${myterm^}${lt}
-         #${dk}######   #######     ${tx}Editor:${ec} ${myedit^}${dk}       
-       .######;     ;###;\`.    ${tx}Browser:${ec} ${mybrowser^}${dk} 
-      .#######;     ;#####.    ${tx}Font:${ec} ${myfont^}${dk} 
-      #########.   .########\`     
-     ######'           '######   
-    ;####                 ####;  
-    ##'                     '##  
-   #'                         \`# 
+         #${dk}######   #######     ${tx}Editor:${ec} ${myedit^}${dk}
+       .######;     ;###;\`.    ${tx}Browser:${ec} ${mybrowser^}${dk}
+      .#######;     ;#####.    ${tx}Font:${ec} ${myfont^}${dk}
+      #########.   .########\`
+     ######'           '######
+    ;####                 ####;
+    ##'                     '##
+   #'                         \`#
   '                            \`${ec}
- 
+
 EOF
 ${shot}

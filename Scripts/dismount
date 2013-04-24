@@ -15,7 +15,7 @@ if ([[ -n "$target" ]] && [[ "$target" =~ "Safebox" ]]); then
     printf "%s\n" "Safebox mounted, exiting."
 
 elif [[ -n "$target" ]]; then
-    grep "PID" <(lsof +D "$target" &>/dev/null)
+    grep "PID" <(lsof +d "$target" &>/dev/null)
          if [[ $? -eq 0 ]]; then
             printf "%s\n" "${target##*/} busy..."
             exit 1
@@ -23,6 +23,6 @@ elif [[ -n "$target" ]]; then
         else udiskie-umount -s "$target" &>/dev/null
              exstatus
         fi
-else     
+else
     printf "%s\n" "No drive mounted..."
 fi
