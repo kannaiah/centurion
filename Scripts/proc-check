@@ -1,19 +1,19 @@
 #!/bin/bash
 # Check if app is running on starting X
 
-list=(highlights mpd mpdscribble syncapp xautolock)  
+list=(btsync highlights mpd mpdscribble xautolock)
 
 for app in "${list[@]}"; do
     check=$(ps -C "$app" -opid=)
     if [[ -z "$check" ]]; then
         case "$app" in
-         highlights) $HOME/Scripts/highlights & 
+             btsync) $HOME/Scripts/btsync
                     ;;
-                mpd) mpd $HOME/.mpd/mpd.conf 
+         highlights) $HOME/Scripts/highlights &
                     ;;
-        mpdscribble) mpdscribble & 
+                mpd) mpd $HOME/.mpd/mpd.conf
                     ;;
-            syncapp) $HOME/Scripts/syncapp 
+        mpdscribble) mpdscribble &
                     ;;
           xautolock) xautolock -time 8 -locker "slock" \
                      -nowlocker "slock" &

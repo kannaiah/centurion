@@ -9,7 +9,7 @@ url="http://www.yllr.net/vimprobable/"
 license=('mit')
 depends=('libwebkit>=1.1.11 gtk2 libsoup')
 makedepends=('git')
-provides=('vimprobable2-git')
+provides=('vimprobable2')
 conflicts=('vimprobable2')
 _gitname="vimprobable"
 _gitbranch="vimprobable2"
@@ -25,8 +25,8 @@ pkgver() {
 prepare() {
   cd "$srcdir/$_gitname"
   sed -i 's:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4 javascriptcoregtk-1.0:' Makefile
-  [[ -f $SRCDEST/config.h ]] && msg "Using your config.h" && cp "$SRCDEST"/config.h .
-  [[ -f $SRCDEST/keymap.h ]] && msg "Using your keymap.h" && cp "$SRCDEST"/keymap.h .
+  [[ -f "$SRCDEST"/config.h ]] && msg "Using your config.h" && cp "$SRCDEST"/config.h .
+  [[ -f "$SRCDEST"/keymap.h ]] && msg "Using your keymap.h" && cp "$SRCDEST"/keymap.h .
 }
 
 build() {

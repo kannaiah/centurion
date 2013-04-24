@@ -1,6 +1,6 @@
 "---------------------------------------------------------------
-" file:     ~/.vimrc                         
-" author:   jason ryan - http://jasonwryan.com/    
+" file:     ~/.vimrc
+" author:   jason ryan - http://jasonwryan.com/
 " vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=vim:
 "---------------------------------------------------------------
 
@@ -53,6 +53,7 @@ set ignorecase                          " case-insensitive search
 set smartcase                           " uppercase causes case-sensitive search
 
 " listchars
+set list
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\ 
 
 " status bar info and appearance
