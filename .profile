@@ -1,4 +1,10 @@
-# source .bashrc               
+#-------------------------------------------------
+# file:     ~/.profile
+# author:   jason ryan - http://jasonwryan.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#-------------------------------------------------
+
+# source .bashrc
 case "$-" in *i*) 
     [[ -r $HOME/.bashrc ]] && source $HOME/.bashrc ;; 
 esac
@@ -20,6 +26,14 @@ export PRINTER="HP_psc_1200_series"
 export http_proxy="http://127.0.0.1:8118"
 export https_proxy="http://127.0.0.1:8118"
 export SYSTEMD_PAGER="/usr/bin/less -R"
+# coloured man pages
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;34m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;35m'
 
 # export other directories to PATH
 PATH=$PATH:$HOME/Scripts:/usr/lib/surfraw/
