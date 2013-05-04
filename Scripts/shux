@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Persistent SSH keys in tmux
 
 PID=$(pgrep tmux)

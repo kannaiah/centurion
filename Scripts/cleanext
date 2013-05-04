@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Script to append correct extensions to files...
 
 for file in *; do

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # manage truecrypt containers using tcplay
 
 user=jason

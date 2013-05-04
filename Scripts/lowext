@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # make extensions lowercase
 # http://stackoverflow.com/questions/11818408/convert-all-file-extensions-to-lower-case
 

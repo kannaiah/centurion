@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # unmount USB drives
 
 target=$(awk '/media\/[\^A-Z]/ {print $3}' <(mount))

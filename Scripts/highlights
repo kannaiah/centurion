@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # script to push IRC highlight notifications
 
 dir="$HOME/Sync/irssi/"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 previous_total=0
 previous_stats=(0 0 0 0)

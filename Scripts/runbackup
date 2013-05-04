@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Backup to remote server over SSH
 # add user to sudoers on target for --rsync-path switch
 

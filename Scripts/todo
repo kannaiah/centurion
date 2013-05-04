@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # email reminder notes using at(1)...
 
 usage() {

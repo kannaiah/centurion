@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Status script for dwm
 # colours: 01:normal 02:white 03:red 04:green 05:yellow 
 # 06:blue 07:cyan 08:magenta 09:grey

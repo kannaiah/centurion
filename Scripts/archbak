@@ -1,8 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # backup Archer files to Centurion
 
+lan="$(ip addr | grep .102)"
 back="$HOME/Centurion/Archer"
 dirs=("$HOME/.config" "$HOME/Scripts" "$HOME/Build/dwm" "$HOME/Build/vimprobable2-git")
+
+if [ -z "$lan" ]; then 
+    printf "%s\n" "Not on home LAN; exiting…"
+    exit 0
+fi
 
 if [[ -d "$back" ]]; then
     printf "%s\n" "Already mounted..."

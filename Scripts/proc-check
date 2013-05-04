@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Check if app is running on starting X
 
 list=(btsync highlights mpd mpdscribble xautolock)

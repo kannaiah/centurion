@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Check currency of ABS packages
 # Snippet lifted from absent: http://aur.archlinux.org/packages.php?ID=50669
 # add /usr/bin/abs to sudoers if you don't want the password prompt
@@ -13,13 +13,13 @@ searchdirs=("/var/abs/core" "/var/abs/extra" "/var/abs/community")
 for name in "$@"; do
     for repo in "${searchdirs[@]}"; do
         if [[ ( -d ${repo}/${name} && -f ${repo}/${name}/PKGBUILD ) ]]; then
-        target="${repo}/${name}" 
+        target="${repo}/${name}"
         repos="${repo##*/}"
-        avers="$(awk -F= '/^pkg(v|r)/ {s=s (s?"-":"") $2} END {printf "%s", s}' <${target}/PKGBUILD)" 
-        pvers="$(awk '/Version/ {print $3}' <(pacman -Si ${name}))" 
+        avers="$(awk -F= '/^pkg(v|r)/ {s=s (s?"-":"") $2} END {printf "%s", s}' <${target}/PKGBUILD)"
+        pvers="$(awk '/Version/ {print $3}' <(pacman -Si ${name}))"
         ivers="$(awk '/Version/ {print $3}' <(pacman -Qi ${name} 2>/dev/null))"
 
-            # synchronize repo 
+            # synchronize repo
             if [[ "$avers" < "$pvers" ]]; then
                 sudo abs "${target##*s/}"
             fi

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 rsync -azP --exclude-from=/home/jason/Scripts/excludes.txt \
     --log-file=/home/jason/.logs/rsync/cache-$(date +%d%m%y).log \

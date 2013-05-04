@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Check for AUR updates and Aurphans
 
 aurfile=$(mktemp -t aurupdates.XXXXXX)

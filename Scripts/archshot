@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Basic info script for screenshot
 # Requires: scrot, fbset & fbgrab
 

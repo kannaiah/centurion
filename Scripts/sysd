@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # wrapper for managing systemd services
 
 arg1=$1
@@ -28,16 +28,16 @@ EOF
 }
 
 actions=("start" "restart" "stop" "enable" "disable")
-
+ 
 for i in "${actions[@]}"; do
     [[ "$i" = "$arg1" ]] && super="yes"
 done
 
 
-if [[ ( $# -eq 2 && "$super" == "yes" ) ]]; then
+if [[ $# -eq 2 ]] && [[ "$super" == "yes" ]]; then 
     sudo systemctl "$1" "$2".service
 
-elif [[ ( $# -eq 2 && "$1" == "read" ) ]]; then
+elif [[ $# -eq 2 ]] && [[ "$1" == "read" ]]; then
     less -FX /usr/lib/systemd/system/"$2".service
 
 elif [[ $# -eq 2 ]]; then

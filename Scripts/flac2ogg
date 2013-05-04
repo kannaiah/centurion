@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # from https://bbs.archlinux.org/viewtopic.php?pid=1231045#p1231045
 
 inf="${1}"

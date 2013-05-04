@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 # Backup to remote server over NFS
 
 if [ $(id -u) -ne 0 ]; then
