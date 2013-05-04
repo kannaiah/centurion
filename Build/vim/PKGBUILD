@@ -3,8 +3,8 @@
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
 _topver=7.3
-_patchlevel=875
-__hgrev=acf7368a2acc
+_patchlevel=918
+__hgrev=c61da758a9a2
 _versiondir="vim${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
 pkgrel=1
@@ -17,10 +17,11 @@ source=("ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz"
         "ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz.sig"
         'vimrc'
         'archlinux.vim')
-md5sums=('4d71e8b9ef6a214b3651d69be19fadec'
-         'ac2bfed9586c987f0b8435c91be3f18a'
+md5sums=('b1a619f017851646a8567deda17bdb36'
+         'SKIP'
          '20fceda56badf201695c57999b0bc609'
          '10353a61aadc3f276692d0e17db1478e')
+
 # source PKGBUILD && mksource
 mksource() {
   [[ -x /usr/bin/hg ]] || (echo "hg not found. Install mercurial." && return 1)

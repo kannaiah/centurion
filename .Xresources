@@ -15,15 +15,6 @@ URxvt.letterSpace: -1
 URxvt.lineSpace: 1
 URxvt.internalBorder: 4
 
-! Font settings
-Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.dpi: 96
-Xft.rgba: rgb
-
 ! borderless and no scrollbar
 URxvt.scrollBar_right: false
 URxvt.scrollBar: false
@@ -33,6 +24,15 @@ URxvt.borderLess: false
 URxvt.inheritPixmap: false
 URxvt.tintColor: #080808
 URxvt.shading: 0
+
+! Font settings
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.dpi: 96
+Xft.rgba: rgb
 
 ! -- Fonts -- !
 !URxvt.font:xft:droid sans mono slashed:size=10.5

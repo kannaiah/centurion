@@ -2,9 +2,8 @@
 # Contributor: totoloco <totoloco en gmail>
 
 pkgname=vimprobable2-git
-pkgver=c5936cc
+pkgver=1.2.1_c5936cc
 pkgrel=1
-epoch=1
 pkgdesc="WWW browser that behaves like the Vimperator plugin available for Mozilla Firefox. It is based on the WebKit engine (using GTK bindings). It is a fork of the currently abandoned vimpression (former webkitbrowser)."
 arch=('i686' 'x86_64')
 url="http://www.yllr.net/vimprobable/"
@@ -19,26 +18,30 @@ source=("$_gitname::git://git.code.sf.net/p/$_gitname/code")
 md5sums=('SKIP')
 
 pkgver() {
-    cd "$_gitname"
-    git describe --always
+  cd "$_gitname"
+  printf '%s\n' "$(awk '/^ / {print $2}' <(git log --grep=version -1))_$(git describe --always)"
 }
 
 prepare() {
-    cd "$srcdir/$_gitname"
-    sed -i 's:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4 javascriptcoregtk-1.0:' Makefile
-    [[ -f "$SRCDEST"/config.h ]] && msg "Using your config.h" && cp "$SRCDEST"/config.h .
-    [[ -f "$SRCDEST"/keymap.h ]] && msg "Using your keymap.h" && cp "$SRCDEST"/keymap.h .
+  cd "$srcdir/$_gitname"
+  sed -i 's:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4:LIBS = gtk+-2.0 webkit-1.0 libsoup-2.4 javascriptcoregtk-1.0:' Makefile
+  if [[ -f "$SRCDEST"/config.h ]]; then
+      msg "Using your config.h" && cp "$SRCDEST"/config.h .
+  fi
+  if [[ -f "$SRCDEST"/keymap.h ]]; then
+      msg "Using your keymap.h" && cp "$SRCDEST"/keymap.h .
+  fi
 }
 
 build() {
-    cd "$srcdir/$_gitname"
-    make
+  cd "$srcdir/$_gitname"
+  make
 }
 
 package() {
-    cd "$srcdir/$_gitname"
-    make PREFIX=/usr MANDIR=/usr/share/man DESTDIR="$pkgdir" install
-    mkdir -p "$pkgdir"/usr/share/licenses/"$_gitbranch"
-    chmod 0755  "$pkgdir"/usr/share/licenses/"$_gitbranch"/
-    install -m 644 LICENSE "$pkgdir"/usr/share/licenses/"$_gitbranch"/LICENSE
+  cd "$srcdir/$_gitname"
+  make PREFIX=/usr MANDIR=/usr/share/man DESTDIR="$pkgdir" install
+  mkdir -p "$pkgdir"/usr/share/licenses/"$_gitbranch"
+  chmod 0755  "$pkgdir"/usr/share/licenses/"$_gitbranch"/
+  install -m 644 LICENSE "$pkgdir"/usr/share/licenses/"$_gitbranch"/LICENSE
 }
