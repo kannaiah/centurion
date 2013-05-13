@@ -26,7 +26,7 @@ shopt -s nocaseglob         # pathname expansion will be treated as case-insensi
 
 set_prompt_style () {
     if [ -n "$SSH_CLIENT" ]; then
-        PS1="┌─[\[\e[0;34m\]\h\[\e[0m\] \[\e[1;33m\]\w:\[\e[0m\] \[\e[1;31m\]SSH\[\e[0m\]]\n└─╼ "
+        PS1="┌─[\[\e[0;34m\]\h\[\e[0m\] \[\e[1;33m\]\w:\[\e[0m\] \[\e[1;31m\]«SSH»\[\e[0m\]]\n└─╼ "
     else
         PS1="┌─[\[\e[34m\]\h\[\e[0m\] \[\e[32m\]\w\[\e[0m\]]\n└─╼ "
     fi
@@ -97,6 +97,7 @@ alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
 alias pi="ssh pi -t 'LANG=en_NZ.utf-8 tmux a -d'"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
+alias updates="pacman -Qqu --dbpath /tmp/checkup-db-jason"
 alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 alias backmusic="rsync -azPv --exclude=Juno* Music /media/Apollo"
 alias ttytter="Scripts/ttytter.pl -keyf=$HOME/.config/ttytter/key -rc=$HOME/.config/ttytter/jwr"

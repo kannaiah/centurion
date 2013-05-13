@@ -22,7 +22,7 @@ mbt(){
 }
 
 gpu(){
-    tmp="$(nvidia-settings -q gpucoretemp -t)"
+    tmp="$(awk 'NR>1{exit};1' <(nvidia-settings -q gpucoretemp -t))"
     echo -e "GPU \x06$tmp\x01"
 }
 

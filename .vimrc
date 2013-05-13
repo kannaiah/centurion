@@ -37,9 +37,6 @@ let g:loaded_matchparen=1               " disable parenthesis hlight plugin
 let g:is_bash=1                         " bash syntax the default for hlighting
 let g:vimsyn_noerror=1                  " hack for correct syntax hlighting
 
-" set path for latexsuite
-set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
-
 " tabs and indenting
 set tabstop=4                           " tabs appear as n number of columns
 set shiftwidth=4                        " n cols for auto-indenting
@@ -93,6 +90,9 @@ let g:Tex_DefaultTargetFormat='pdf'
 let g:Tex_ViewRule_pdf='evince'
 let g:Tex_CompileRule_dvi='latex -interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode $*'
+
+" set path for latexsuite
+set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
 
 " keep cursor centered
 :nnoremap j jzz

@@ -137,9 +137,9 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .fehbg             00;36
 .fonts             00;36
 .gemrc             00;32
-.git               00;36
-.gitconfig         01;34
-.gitignore         00;36
+.git               00;35
+.gitconfig         00;35
+.gitignore         00;35
 .hgrc              00;35
 .hgignore          00;35
 .go                01;34

@@ -33,6 +33,6 @@ read -p "Date of message? [dd.mm.yy] " date
 read -p "Message body? " message
 
 at "$time" "$date" << EOF
-echo "$message" | mailx -s "REMINDER" jasonryan@fastmail.fm
+echo "$message" | mutt -s "REMINDER" jasonwryan@gmail.com
 EOF
 

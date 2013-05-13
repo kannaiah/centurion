@@ -1,11 +1,10 @@
-# build without gnome-keyring…
+# Build without texlive and gnome-keyring
 
 pkgbase=msmtp
 pkgname=('msmtp' 'msmtp-mta')
 pkgver=1.4.31
-pkgrel=1
+pkgrel=2
 arch=('i686' 'x86_64')
-groups=('modified')
 license=('GPL3')
 url="http://msmtp.sourceforge.net"
 makedepends=('gsasl')
@@ -18,10 +17,12 @@ prepare() {
 }
 
 build() {
-  cd "${pkgbase}-${pkgver}"
+  cd ${pkgbase}-${pkgver}
   ./configure --prefix=/usr --sysconfdir=/etc --with-ssl=gnutls --without-gnome-keyring
   make
-  make -C doc html pdf
+  if [[ -n $(expac -Q '%n' texlive-core) ]]; then
+      make -C doc html pdf
+  fi
 }
 
 package_msmtp() {
@@ -31,7 +32,10 @@ package_msmtp() {
 
   cd ${pkgbase}-${pkgver}
   make DESTDIR="${pkgdir}" install 
+
+  if [[ -n $(expac -Q '%n' texlive-core) ]]; then
   make DESTDIR="${pkgdir}" -C doc install-html install-pdf
+  fi
 
 # Installing example configs and scripts to /usr/share/doc/msmtp
 # as they are not installed by default (Debian and Gentoo do it this way)
@@ -47,6 +51,6 @@ package_msmtp-mta() {
   depends=('msmtp')
   provides=('smtp-forwarder')
 
-  install -d "${pkgdir}/usr/sbin"
-  ln -s /usr/bin/msmtp "${pkgdir}/usr/sbin/sendmail"
+  install -d "${pkgdir}/usr/bin"
+  ln -s msmtp "${pkgdir}/usr/bin/sendmail"
 }
