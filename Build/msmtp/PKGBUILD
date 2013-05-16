@@ -3,13 +3,14 @@
 pkgbase=msmtp
 pkgname=('msmtp' 'msmtp-mta')
 pkgver=1.4.31
-pkgrel=2
+pkgrel=3
 arch=('i686' 'x86_64')
+groups=('modified')
 license=('GPL3')
 url="http://msmtp.sourceforge.net"
 makedepends=('gsasl')
 source=(http://download.sourceforge.net/sourceforge/msmtp/${pkgbase}-${pkgver}.tar.bz2)
-sha1sums=('c0edce1e1951968853f15209c8509699ff9e9ab5')
+md5sums=('792ac0ffa30dc95ea1889a548128186d')
 
 prepare() {
   cd ${pkgbase}-${pkgver}
@@ -51,6 +52,7 @@ package_msmtp-mta() {
   depends=('msmtp')
   provides=('smtp-forwarder')
 
-  install -d "${pkgdir}/usr/bin"
-  ln -s msmtp "${pkgdir}/usr/bin/sendmail"
+    install -d "${pkgdir}"/usr/{s,}bin
+    ln -s msmtp "${pkgdir}/usr/bin/sendmail"
+    ln -s ../bin/msmtp "${pkgdir}/usr/sbin/sendmail"
 }

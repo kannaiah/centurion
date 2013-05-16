@@ -59,12 +59,13 @@ set laststatus=2
 set cmdheight=1
 
 if has("autocmd")
-	" always jump to the last cursor position
-	autocmd BufReadPost * if line("'\"")>0 && line("'\"")<=line("$")|exe "normal g`\""|endif
+    " always jump to the last cursor position
+    autocmd BufReadPost * if line("'\"")>0 && line("'\"")<=line("$")|exe "normal g`\""|endif
     " limit cols to 80 in various filetypes
-	autocmd BufRead *.txt set tw=80 " limit width to n cols for txt files
-	autocmd BufRead ~/.mutt/temp/mutt-* set tw=80 ft=mail nolist nocindent spell   " width, mail syntax hilight, spellcheck
-	autocmd BufRead /tmp/vimprobable* set tw=80 spell
+    autocmd BufRead *.txt set tw=80 " limit width to n cols for txt files
+    autocmd BufRead *.markdown set tw=80 nolist " for blog entries
+    autocmd BufRead ~/.mutt/temp/mutt-* set tw=80 ft=mail nolist nocindent spell   " width, mail syntax hilight, spellcheck
+    autocmd BufRead /tmp/vimprobable* set tw=80 spell
     autocmd FileType tex set tw=80   " wrap at 80 chars for LaTeX files
 endif
 

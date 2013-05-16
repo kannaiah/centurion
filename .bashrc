@@ -153,6 +153,9 @@ extract() {
   fi
 }
 
+# ssh tmux connections
+shux() { args=("$@"); ssh "$1" -t LANG=en_NZ.utf-8 "${args[@]:1}" ;}
+
 # processes
 pids() { ps aux | grep $1 ;}
 
