@@ -5,17 +5,20 @@
     (c) 2010-2011 by Hans-Peter Deifel
     (c) 2010-2011 by Thomas Adam
     (c) 2011 by Albert Kim
+    (c) 2013 Daniel Carl
     see LICENSE file
 */
 
 /* Vimprobable version number */
-#define VERSION "1.2.0"
+#define VERSION "1.3.0"
 #define INTERNAL_VERSION "Vimprobable2/"VERSION
 
+extern Client client;
+
 /* general settings */
-char startpage[MAX_SETTING_SIZE]      = "https://bbs.archlinux.org/";
-char useragent[MAX_SETTING_SIZE]      = "Vimprobable2/" VERSION;
-char acceptlanguage[MAX_SETTING_SIZE] = "";
+char startpage[MAX_SETTING_SIZE]        = "https://bbs.archlinux.org/";
+char useragent[MAX_SETTING_SIZE]        = "Vimprobable2/" VERSION;
+char acceptlanguage[MAX_SETTING_SIZE]   = "";
 static const gboolean enablePlugins     = TRUE; /* TRUE keeps plugins enabled */
 static const gboolean enableJava        = TRUE; /* FALSE disables Java applets */
 static const gboolean enablePagecache   = FALSE; /* TRUE turns on the page cache. */
@@ -72,7 +75,7 @@ static URIHandler uri_handlers[] = {
 
 /* cookies */
 #define             ENABLE_COOKIE_SUPPORT
-#define             COOKIES_STORAGE_FILENAME    "%s/vimprobable/cookies", config_base
+#define             COOKIES_STORAGE_FILENAME    "%s/vimprobable/cookies", client.config.config_base
 #define             COOKIES_STORAGE_READONLY    FALSE   /* if TRUE new cookies will be lost if you quit */
 
 /* downloads directory */
@@ -82,11 +85,11 @@ static URIHandler uri_handlers[] = {
 #define             DEFAULT_FONT_SIZE           13
 
 /* user styles */
-#define             USER_STYLESHEET             "%s/vimprobable/style.css", config_base
+#define             USER_STYLESHEET             "%s/vimprobable/style.css", client.config.config_base
 
 /* user javascript */
 #define             ENABLE_USER_SCRIPTFILE
-#define             USER_SCRIPTFILE             "%s/vimprobable/scripts.js", config_base
+#define             USER_SCRIPTFILE             "%s/vimprobable/scripts.js", client.config.config_base
 
 /* ssl */
 static gboolean strict_ssl              = TRUE; /* FALSE will accept any SSL certificate at face value */
@@ -120,51 +123,55 @@ static char defaultsearch[MAX_SETTING_SIZE] = "d";
 
 /* command mapping */
 Command commands[COMMANDSIZE] = {
-    /* command,                                        	function,         argument */
-    { "ba",                                            	navigate,         {NavigationBack} },
-    { "back",                                          	navigate,         {NavigationBack} },
-    { "ec",                                            	script,           {Info} },
-    { "echo",                                          	script,           {Info} },
-    { "echoe",                                         	script,           {Error} },
-    { "echoerr",                                       	script,           {Error} },
-    { "fw",                                            	navigate,         {NavigationForward} },
-    { "fo",                                            	navigate,         {NavigationForward} },
-    { "forward",                                       	navigate,         {NavigationForward} },
-    { "javascript",                                    	script,           {Silent} },
-    { "o",                                             	open_arg,         {TargetCurrent} },
-    { "open",                                          	open_arg,         {TargetCurrent} },
-    { "q",                                             	quit,             {0} },
-    { "quit",                                          	quit,             {0} },
-    { "re",                                            	navigate,         {NavigationReload} },
-    { "re!",                                           	navigate,         {NavigationForceReload} },
-    { "reload",                                        	navigate,         {NavigationReload} },
-    { "reload!",                                       	navigate,         {NavigationForceReload} },
-    { "qt",                                             search_tag,       {0} },
-    { "st",                                            	navigate,         {NavigationCancel} },
-    { "stop",                                          	navigate,         {NavigationCancel} },
-    { "t",                                             	open_arg,         {TargetNew} },
-    { "tabopen",                                       	open_arg,         {TargetNew} },
-    { "ha",                                         	print_frame,      {0} },
-    { "print",                                         	print_frame,      {0} },
-    { "bma",                                           	bookmark,         {0} },
-    { "bookmark",                                      	bookmark,         {0} },
-    { "source",                                        	view_source,      {0} },
-    { "openeditor",                                   	open_editor,      {0} },
-    { "set",                                           	browser_settings, {0} },
-    { "map",                                           	mappings,         {0} },
-    { "inspect",                                        open_inspector,   {0} },
-    { "jumpleft",                                       scroll,           {ScrollJumpTo   | DirectionLeft} },
-    { "jumpright",                                      scroll,           {ScrollJumpTo   | DirectionRight} },
-    { "jumptop",                                        scroll,           {ScrollJumpTo   | DirectionTop} },
-    { "jumpbottom",                                     scroll,           {ScrollJumpTo   | DirectionBottom} },
-    { "pageup",                                         scroll,           {ScrollMove     | DirectionTop      | UnitPage} },	
-    { "pagedown",                                       scroll,           {ScrollMove     | DirectionBottom   | UnitPage} },
-    { "navigationback",   	                            navigate,         {NavigationBack} },
-    { "navigationforward",	                            navigate,         {NavigationForward} },
-    { "scrollleft",                                     scroll,           {ScrollMove     | DirectionLeft     | UnitLine} },
-    { "scrollright",                                    scroll,           {ScrollMove     | DirectionRight    | UnitLine} },
-    { "scrollup",                                       scroll,           {ScrollMove     | DirectionTop      | UnitLine} },
-    { "scrolldown",                                     scroll,           {ScrollMove     | DirectionBottom   | UnitLine} },
+    /* command,                                        function,         argument */
+    { "ba",                                            navigate,         {NavigationBack} },
+    { "back",                                          navigate,         {NavigationBack} },
+    { "ec",                                            script,           {Info} },
+    { "echo",                                          script,           {Info} },
+    { "echoe",                                         script,           {Error} },
+    { "echoerr",                                       script,           {Error} },
+    { "fw",                                            navigate,         {NavigationForward} },
+    { "fo",                                            navigate,         {NavigationForward} },
+    { "forward",                                       navigate,         {NavigationForward} },
+    { "javascript",                                    script,           {Silent} },
+    { "o",                                             open_arg,         {TargetCurrent} },
+    { "open",                                          open_arg,         {TargetCurrent} },
+    { "q",                                             quit,             {0} },
+    { "quit",                                          quit,             {0} },
+    { "re",                                            navigate,         {NavigationReload} },
+    { "re!",                                           navigate,         {NavigationForceReload} },
+    { "reload",                                        navigate,         {NavigationReload} },
+    { "reload!",                                       navigate,         {NavigationForceReload} },
+    { "qt",                                            search_tag,       {0} },
+    { "st",                                            navigate,         {NavigationCancel} },
+    { "stop",                                          navigate,         {NavigationCancel} },
+    { "t",                                             open_arg,         {TargetNew} },
+    { "tabopen",                                       open_arg,         {TargetNew} },
+    { "print",                                         print_frame,      {0} },
+    { "ha",                                            print_frame,      {0} },
+    { "bma",                                           bookmark,         {0} },
+    { "bookmark",                                      bookmark,         {0} },
+    { "source",                                        view_source,      {0} },
+    { "openeditor",                                    open_editor,      {0} },
+    { "set",                                           browser_settings, {0} },
+    { "map",                                           mappings,         {0} },
+    { "inspect",                                       open_inspector,   {0} },
+    { "jumpleft",                                      scroll,           {ScrollJumpTo   | DirectionLeft} },
+    { "jumpright",                                     scroll,           {ScrollJumpTo   | DirectionRight} },
+    { "jumptop",                                       scroll,           {ScrollJumpTo   | DirectionTop} },
+    { "jumpbottom",                                    scroll,           {ScrollJumpTo   | DirectionBottom} },
+    { "pageup",                                        scroll,           {ScrollMove     | DirectionTop      | UnitPage} },
+    { "pagedown",                                      scroll,           {ScrollMove     | DirectionBottom   | UnitPage} },
+    { "navigationback",                                navigate,         {NavigationBack} },
+    { "navigationforward",                             navigate,         {NavigationForward} },
+    { "scrollleft",                                    scroll,           {ScrollMove     | DirectionLeft     | UnitLine} },
+    { "scrollright",                                   scroll,           {ScrollMove     | DirectionRight    | UnitLine} },
+    { "scrollup",                                      scroll,           {ScrollMove     | DirectionTop      | UnitLine} },
+    { "scrolldown",                                    scroll,           {ScrollMove     | DirectionBottom   | UnitLine} },
+    { "zi",                                            zoom,             {ZoomIn         | ZoomText} },
+    { "zo",                                            zoom,             {ZoomOut        | ZoomText} },
+    { "pgzi",                                          zoom,             {ZoomIn         | ZoomFullContent} },
+    { "pgzo",                                          zoom,             {ZoomOut        | ZoomFullContent} },
 };
 
 /* mouse bindings
@@ -172,7 +179,7 @@ Command commands[COMMANDSIZE] = {
 */
 static Mouse mouse[] = {
     /* modmask,             modkey,         button,            function,        argument */
-    { 0,                    0,              MOUSE_BUTTON_2,    paste,           {TargetCurrent  | ClipboardPrimary  | ClipboardGTK, rememberedURI} },
+    { 0,                    0,              MOUSE_BUTTON_2,    paste,           {TargetCurrent  | ClipboardPrimary  | ClipboardGTK, client.state.rememberedURI} },
     { GDK_CONTROL_MASK,     0,              MOUSE_BUTTON_2,    paste,           {TargetNew  | ClipboardPrimary  | ClipboardGTK} },
     { GDK_CONTROL_MASK,     0,              MOUSE_BUTTON_1,    open_remembered, {TargetNew} },
 };
@@ -217,7 +224,7 @@ static Setting browsersettings[] = {
     { "statusbar",       NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "inputbox",        NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "completioncase",  NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
-    { "escapeinput",     NULL,               "",                           FALSE,          TRUE,            FALSE,          FALSE  },
+    { "escapeinput",     NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "strictssl",       NULL,               "",                            FALSE,          TRUE,            FALSE,          FALSE  },
     { "cabundle",        ca_bundle,          "",                            FALSE,          FALSE,           FALSE,          FALSE  },
     { "tempdir",         temp_dir,           "",                            FALSE,          FALSE,           FALSE,          FALSE  },
