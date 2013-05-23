@@ -23,7 +23,7 @@ static Bool npisrelative  = False;
 static Key keys[] = { \
 	/* modifier                     key        function        argument */
 	{ MODKEY,             XK_Return, focusonce,      { 0 } },
-	{ MODKEY,             XK_Return, spawn,          { 0 } },
+	{ MODKEY,             XK_Return, spawn,          { .v = (char*[]){ "vimprobable2", "-e", winid, NULL} } },
 
 	{ MODKEY,             XK_l,      rotate,         { .i = +1 } },
 	{ MODKEY,             XK_Right,  rotate,         { .i = +1 } },
