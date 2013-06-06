@@ -85,6 +85,7 @@ alias sraw="sr archwiki"
 alias exit="clear; exit"
 alias wifi="wicd-curses"
 alias cdp="mplayer cdda://"
+alias updates="checkupdates"
 alias blog="cd ~/VCS/octopress"
 alias tmux="tmux -f ~/.tmux/conf"
 alias 200="ssh 200 -t tmux a -d"
@@ -97,7 +98,6 @@ alias vime="vim -u $HOME/.vim/vimencrypt -x"
 alias nocomment='egrep -v "^[ \t]*#|^[ \t]*$"'
 alias pi="ssh pi -t 'LANG=en_NZ.utf-8 tmux a -d'"
 alias irc="rm -f $HOME/.irssi/saved_colors && irssi"
-alias updates="pacman -Qqu --dbpath /tmp/checkup-db-jason"
 alias rss="newsbeuter -C $XDG_CONFIG_HOME/newsbeuter/config"
 alias backmusic="rsync -azPv --exclude=Juno* Music /media/Apollo"
 alias ttytter="Scripts/ttytter.pl -keyf=$HOME/.config/ttytter/key -rc=$HOME/.config/ttytter/jwr"
@@ -108,9 +108,6 @@ complete -cf pacman
 
 # update
 alias pacup="sudo pacman -Syu"
-
-# List updates
-alias lspkg="pacman -Qqu --dbpath /tmp/checkup-db-jason/"
 
 # Remove orphans
 alias orphans="pacman -Qtdq"
@@ -123,7 +120,7 @@ paclog() { tail -n"$1" /var/log/pacman.log ;}
 
 unsigned() { expac -S '%r %n %g'|awk '$3=="(null)" {print $1 "/" $2}' > unsigned.packages ; }
 
-# Mounts 
+# Mounts
 alias sentinel="sudo mount.nfs4 192.168.1.200:/ /media/Sentinel"
 
 ####### Functions ########
@@ -207,25 +204,20 @@ manp() { man -t "$@" | lpr -pPrinter; }
 # Create pdf of man page - requires ghostscript and mimeinfo
 manpdf() { man -t "$@" | ps2pdf - /tmp/manpdf_$1.pdf && xdg-open /tmp/manpdf_$1.pdf ;}
 
-# VPN
-vpnon() { sudo vpnc "$1" ; }
-vpnoff() { sudo vpnc-disconnect ; }
-vpnup() { pgrep vpnc >/dev/null && printf '%s\n' "Connected…" || printf '%s\n' "VPN down!" ; }
-
 ### Simple notes ------------------------------------------------
-n() { 
+n() {
   local arg files=()
   for arg; do 
       files+=( $HOME/".notes/$arg" )
   done
-  ${EDITOR:-vi} "${files[@]}"; 
+  ${EDITOR:-vi} "${files[@]}";
 }
 
 nls() {
-  tree -CR --noreport $HOME/.notes | awk '{ 
-    if (NF==1) print $1 
+  tree -CR --noreport $HOME/.notes | awk '{
+    if (NF==1) print $1
     else if (NF==2) print $2
-    else if (NF==3) printf "  %s\n", $3 
+    else if (NF==3) printf "  %s\n", $3
   }'
 }
 

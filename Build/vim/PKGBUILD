@@ -3,8 +3,8 @@
 pkgbase=vim
 pkgname=('vim' 'vim-runtime')
 _topver=7.3
-_patchlevel=918
-__hgrev=c61da758a9a2
+_patchlevel=1070
+__hgrev=6702a3ddd7e2
 _versiondir="vim${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
 pkgrel=1
@@ -17,7 +17,7 @@ source=("ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz"
         "ftp://ftp.archlinux.org/other/vim/vim-${pkgver}.tar.xz.sig"
         'vimrc'
         'archlinux.vim')
-md5sums=('b1a619f017851646a8567deda17bdb36'
+md5sums=('28e8cc0c70fd8473c1bba050ca8d04d0'
          'SKIP'
          '20fceda56badf201695c57999b0bc609'
          '10353a61aadc3f276692d0e17db1478e')
@@ -103,8 +103,8 @@ package_vim() {
   mv "${pkgdir}"/usr/share/vim "${srcdir}"/runtime-install
 
   # license
-   install -Dm644 "${srcdir}"/vim-${pkgver}/runtime/doc/uganda.txt \
-    "${pkgdir}"/usr/share/licenses/${pkgname}/license.txt
+  install -Dm644 "${srcdir}"/vim-${pkgver}/runtime/doc/uganda.txt \
+  "${pkgdir}"/usr/share/licenses/${pkgname}/license.txt
 }
 
 package_vim-runtime() {
@@ -142,4 +142,3 @@ package_vim-runtime() {
 }
 
 # vim:set sw=2 sts=2 et:
-

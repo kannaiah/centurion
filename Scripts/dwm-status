@@ -4,11 +4,11 @@
 # 06:blue 07:cyan 08:magenta 09:grey
 
 music(){
-    track="$(mpc current)"
+    track="$(awk -F") " '{print $2,$3}' <(ncmpcpp --now-playing))"
     artist="${track%%- *}"
     title="${track##*- }"
     if [[ -n "$artist" ]]; then
-        echo -e "\x08$artist\x01\x06$title\x01 •"
+        echo -e "\x08$artist\x01\x06$title\x01•"
     fi
 }
 

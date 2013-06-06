@@ -64,7 +64,7 @@ use_lessopen 0
 bgextviewer 1
 extbrowser3 /usr/bin/firefox
 extbrowser2 /home/jason/Scripts/vimprobtab.sh &
-extbrowser sh -c 'printf %s "$0" | xsel
+extbrowser sh -c 'printf %s "$0" | xsel'
 mailer /usr/bin/mutt
 mailto_options 1
 editor /usr/bin/vim
