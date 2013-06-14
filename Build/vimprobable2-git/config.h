@@ -111,10 +111,10 @@ gboolean complete_case_sensitive        = TRUE;
 /* search engines */
 static Searchengine searchengines[] = {
     { "d",         "https://duckduckgo.com/html/?q=%s&t=Vimprobable" },
-    { "g",         "http://www.google.com/search?hl=en&source=hp&ie=ISO-8859-l&q=%s" },
+    { "g",         "http://startpage.com/do/metasearch.pl?language=english&cat=web&query=%s" },
     { "a",         "https://wiki.archlinux.org/index.php?title=Special%%3ASearch&search=%s&go=Go" },
     { "w",         "https://secure.wikimedia.org/wikipedia/en/w/index.php?title=Special%%3ASearch&search=%s&go=Go" },
-    { "b",         "http://www.google.com/search?q=site:bbs.archlinux.org+%s" },
+    { "b",         "https://startpage.com/do/metasearch.pl?&cat=web&query=host:bbs.archlinux.org+%s" },
     /* Hack to shorten urls */
     { "B",         "http://api.bit.ly/v3/shorten?login=jasonwryan&apikey=R_b71a9d75eecaed78de197596f35126d9&longUrl=%s&format=txt" },
 };

@@ -11,7 +11,7 @@ URxvt.cursorBlink: false
 URxvt.geometry: 80x22
 URxvt.transparent: 0
 URxvt.urgentOnBell: true
-URxvt.letterSpace: -1
+URxvt.letterSpace: -2
 URxvt.lineSpace: 1
 URxvt.internalBorder: 4
 
