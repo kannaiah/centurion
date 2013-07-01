@@ -13,7 +13,7 @@ EOF
 }
 
 print() {
-    awk -F"|" '/gmail/ {sub(/echo/,""); print $1}' <(at -c "$@")
+    awk -F\" '/gmail/ { print $2 }' <(at -c "$@")
 }
 
 list() {

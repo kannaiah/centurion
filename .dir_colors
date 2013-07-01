@@ -79,14 +79,15 @@ STICKY             01;34      # dir with the sticky bit set (+t) and not other-w
 .mid               00;32
 .wav               00;32
 .au                00;32
-.nes               00;31
-.smc               00;31
+.nes               00;32
+.smc               00;32
 .sdcv_history      00;32
-.fig               00;31
-.sfc               00;31
-.smc.gz            00;31
-.fig.gz            00;31
-.sfc.gz            00;31
+.fig               00;32
+.sfc               00;32
+.smc.gz            00;32
+.fig.gz            00;32
+.sfc.gz            00;32
+.iso               00;32
 
 .avi               01;35
 .flc               01;35

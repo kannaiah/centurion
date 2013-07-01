@@ -64,7 +64,7 @@ if has("autocmd")
     " limit cols to 80 in various filetypes
     autocmd BufRead *.txt set tw=80 " limit width to n cols for txt files
     autocmd BufRead *.markdown set tw=80 nolist " for blog entries
-    autocmd BufRead ~/.mutt/temp/mutt-* set tw=80 ft=mail nolist nocindent spell   " width, mail syntax hilight, spellcheck
+    autocmd BufRead ~/.mutt/temp/mutt-* set tw=79 ft=mail nolist nocindent spell   " width, mail syntax hilight, spellcheck
     autocmd BufRead /tmp/vimprobable* set tw=80 spell
     autocmd FileType tex set tw=80   " wrap at 80 chars for LaTeX files
 endif

@@ -60,7 +60,7 @@ export PERL_SIGNALS=unsafe
 # ruby version management
 if [[ -e /usr/local/share/chruby ]]; then
     source /usr/local/share/chruby/{chruby,auto}.sh
-    chruby $(<$HOME/.ruby-version)
+    chruby $(<$HOME/.config/ruby-version)
 fi
 
 ######## Aliases ########

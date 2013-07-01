@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Status script for dwm
-# colours: 01:normal 02:white 03:red 04:green 05:yellow 
+# colours: 01:normal 02:white 03:red 04:green 05:yellow
 # 06:blue 07:cyan 08:magenta 09:grey
 
 music(){
@@ -90,8 +90,17 @@ aur(){
 }
 
 int(){
-    int="$("$HOME/Scripts/speed")"
-    echo -e "$int"
+    for f in /sys/class/net/*
+        do
+        state=$(<"${f}"/operstate)
+        if [[ "$state" == "up" ]]
+           then
+           iface="${f##*/}"
+           awk -v i="$iface" '
+              $0 ~ i {printf("\x04%2.1fKB\x06 %2.1fKB\x01",$6/1000, $8/1000)}
+          ' <(ifstat)
+        fi
+    done
 }
 
 dte(){
