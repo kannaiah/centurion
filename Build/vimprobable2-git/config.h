@@ -111,12 +111,12 @@ gboolean complete_case_sensitive        = TRUE;
 /* search engines */
 static Searchengine searchengines[] = {
     { "d",         "https://duckduckgo.com/html/?q=%s&t=Vimprobable" },
-    { "g",         "http://startpage.com/do/metasearch.pl?language=english&cat=web&query=%s" },
+    { "g",         "https://ixquick.com/do/metasearch.pl?language=english&cat=web&query=%s" },
+    { "b",         "https://ixquick.com/do/metasearch.pl?&cat=web&query=host:bbs.archlinux.org+%s" },
     { "a",         "https://wiki.archlinux.org/index.php?title=Special%%3ASearch&search=%s&go=Go" },
     { "w",         "https://secure.wikimedia.org/wikipedia/en/w/index.php?title=Special%%3ASearch&search=%s&go=Go" },
-    { "b",         "https://startpage.com/do/metasearch.pl?&cat=web&query=host:bbs.archlinux.org+%s" },
     /* Hack to shorten urls */
-    { "B",         "http://api.bit.ly/v3/shorten?login=jasonwryan&apikey=R_b71a9d75eecaed78de197596f35126d9&longUrl=%s&format=txt" },
+    { "B",         "https://api.bit.ly/v3/shorten?login=jasonwryan&apikey=R_b71a9d75eecaed78de197596f35126d9&longUrl=%s&format=txt" },
 };
 
 static char defaultsearch[MAX_SETTING_SIZE] = "d";

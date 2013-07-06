@@ -90,17 +90,8 @@ aur(){
 }
 
 int(){
-    for f in /sys/class/net/*
-        do
-        state=$(<"${f}"/operstate)
-        if [[ "$state" == "up" ]]
-           then
-           iface="${f##*/}"
-           awk -v i="$iface" '
-              $0 ~ i {printf("\x04%2.1fKB\x06 %2.1fKB\x01",$6/1000, $8/1000)}
-          ' <(ifstat)
-        fi
-    done
+    int="$("$HOME/Scripts/speed")"
+    echo -e "$int"
 }
 
 dte(){

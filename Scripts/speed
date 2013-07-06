@@ -8,4 +8,4 @@ TXBN=$(</sys/class/net/enp2s0/statistics/tx_bytes)
 RXDIF=$(echo $((RXBN - RXB)) )
 TXDIF=$(echo $((TXBN - TXB)) )
 
-echo -e "\x04$((RXDIF / 1024 / 2))K/s \x06$((TXDIF / 1024 / 2))K/s\x01"
+echo -e "\x04$((RXDIF / 1024 / 2))KB \x06$((TXDIF / 1024 / 2))KB\x01"
