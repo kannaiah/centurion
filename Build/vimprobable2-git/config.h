@@ -116,7 +116,7 @@ static Searchengine searchengines[] = {
     { "a",         "https://wiki.archlinux.org/index.php?title=Special%%3ASearch&search=%s&go=Go" },
     { "w",         "https://secure.wikimedia.org/wikipedia/en/w/index.php?title=Special%%3ASearch&search=%s&go=Go" },
     /* Hack to shorten urls */
-    { "B",         "https://api.bit.ly/v3/shorten?login=jasonwryan&apikey=R_b71a9d75eecaed78de197596f35126d9&longUrl=%s&format=txt" },
+    { "B",         "http://api.bit.ly/v3/shorten?login=jasonwryan&apikey=R_b71a9d75eecaed78de197596f35126d9&longUrl=%s&format=txt" },
 };
 
 static char defaultsearch[MAX_SETTING_SIZE] = "d";
