@@ -39,9 +39,9 @@ export LESS_TERMCAP_us=$'\E[01;35m'
 PATH=$PATH:$HOME/Scripts:/usr/lib/surfraw/
 
 # start keychain
-/usr/bin/keychain -Q -q --nogui id_dsa id_rsa alioth archer bb B1BD4E40
-[[ -f $HOME/.keychain/${HOSTNAME}-sh ]] && source $HOME/.keychain/${HOSTNAME}-sh
-[[ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ]] && source $HOME/.keychain/${HOSTNAME}-sh-gpg
+#/usr/bin/keychain -Q -q --nogui id_dsa id_rsa alioth archer bb B1BD4E40
+#[[ -f $HOME/.keychain/${HOSTNAME}-sh ]] && source $HOME/.keychain/${HOSTNAME}-sh
+#[[ -f $HOME/.keychain/${HOSTNAME}-sh-gpg ]] && source $HOME/.keychain/${HOSTNAME}-sh-gpg
 
 # startx if on TTY1 and tmux on TTY2
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then

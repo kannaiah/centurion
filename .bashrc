@@ -43,7 +43,7 @@ PROMPT_COMMAND="history -a; history -c; history -r"
 export HISTSIZE PROMPT_COMMAND
 
 # command not found
-source /usr/share/doc/pkgfile/command-not-found.bash
+#source /usr/share/doc/pkgfile/command-not-found.bash
 
 # visual bell
 set bell-style visible
@@ -53,7 +53,7 @@ eval $(dircolors -b ~/.dir_colors)
 export GREP_COLOR="1;31"
 alias grep="grep --color=auto"
 alias ls="ls --color=auto"
-
+alias vi="vim"
 # TTYtter hack
 export PERL_SIGNALS=unsafe
 
